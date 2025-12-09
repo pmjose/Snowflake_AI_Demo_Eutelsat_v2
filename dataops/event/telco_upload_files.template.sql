@@ -28,6 +28,10 @@ PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/location_dim.c
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/marketing_campaign_fact.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/product_category_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/product_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/cityfibre_kpi.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/region_rfs_progress.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/arpu_segment.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/install_lead_time.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/region_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/sales_fact.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/sales_rep_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
