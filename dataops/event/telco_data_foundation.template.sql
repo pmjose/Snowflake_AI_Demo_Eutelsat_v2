@@ -1,7 +1,7 @@
 -- ============================================================================
--- Gamma AI Demo - Data Foundation (DataOps Template)
+-- CityFibre AI Demo - Data Foundation (DataOps Template)
 -- ============================================================================
--- Description: Creates tables and loads Gamma UK B2B communications data
+-- Description: Creates tables and loads CityFibre UK full fibre infrastructure and commercial data
 -- Variables: {{ DATABASE_NAME }}, {{ SCHEMA_NAME }}, {{ DATA_STAGE }}
 -- ============================================================================
 
@@ -37,7 +37,7 @@ CREATE OR REPLACE TABLE product_category_dim (
     category_key INT PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL,
     vertical VARCHAR(50) NOT NULL
-) COMMENT = 'Product categories for Gamma UK B2B communications products';
+) COMMENT = 'Product categories for CityFibre full fibre services';
 
 -- Product Dimension
 CREATE OR REPLACE TABLE product_dim (
@@ -46,7 +46,7 @@ CREATE OR REPLACE TABLE product_dim (
     category_key INT NOT NULL,
     category_name VARCHAR(100),
     vertical VARCHAR(50)
-) COMMENT = 'Gamma UK products: UCaaS, CCaaS, Voice, Connectivity, Security';
+) COMMENT = 'CityFibre services: full fibre access, ethernet, backhaul, wholesale, smart city';
 
 -- Vendor Dimension
 CREATE OR REPLACE TABLE vendor_dim (
@@ -57,7 +57,7 @@ CREATE OR REPLACE TABLE vendor_dim (
     city VARCHAR(100),
     state VARCHAR(10),
     zip VARCHAR(20)
-) COMMENT = 'Gamma UK vendors: Microsoft, Cisco, AWS, BT Openreach, etc.';
+) COMMENT = 'CityFibre suppliers and partners: construction, network equipment, cloud';
 
 -- Customer Dimension
 CREATE OR REPLACE TABLE customer_dim (
@@ -69,7 +69,7 @@ CREATE OR REPLACE TABLE customer_dim (
     city VARCHAR(100),
     state VARCHAR(10),
     zip VARCHAR(20)
-) COMMENT = 'Gamma UK B2B customers across verticals';
+) COMMENT = 'CityFibre UK customers across residential, business, public sector, and partner verticals';
 
 -- Account Dimension (Finance)
 CREATE OR REPLACE TABLE account_dim (
@@ -82,7 +82,7 @@ CREATE OR REPLACE TABLE account_dim (
 CREATE OR REPLACE TABLE department_dim (
     department_key INT PRIMARY KEY,
     department_name VARCHAR(100) NOT NULL
-) COMMENT = 'Gamma UK organizational departments';
+) COMMENT = 'CityFibre organizational departments';
 
 -- Region Dimension
 CREATE OR REPLACE TABLE region_dim (
@@ -95,7 +95,7 @@ CREATE OR REPLACE TABLE sales_rep_dim (
     sales_rep_key INT PRIMARY KEY,
     rep_name VARCHAR(200) NOT NULL,
     hire_date DATE
-) COMMENT = 'Gamma UK sales representatives and channel account managers';
+) COMMENT = 'CityFibre sales representatives and channel account managers';
 
 -- Campaign Dimension (Marketing)
 CREATE OR REPLACE TABLE campaign_dim (
@@ -116,20 +116,20 @@ CREATE OR REPLACE TABLE employee_dim (
     employee_name VARCHAR(200) NOT NULL,
     gender VARCHAR(1),
     hire_date DATE
-) COMMENT = 'Gamma UK employees for HR analysis';
+) COMMENT = 'CityFibre employees for HR analysis';
 
 -- Job Dimension (HR)
 CREATE OR REPLACE TABLE job_dim (
     job_key INT PRIMARY KEY,
     job_title VARCHAR(100) NOT NULL,
     job_level INT
-) COMMENT = 'Job titles and levels within Gamma UK';
+) COMMENT = 'Job titles and levels within CityFibre';
 
 -- Location Dimension (HR)
 CREATE OR REPLACE TABLE location_dim (
     location_key INT PRIMARY KEY,
     location_name VARCHAR(200) NOT NULL
-) COMMENT = 'Gamma UK office locations';
+) COMMENT = 'CityFibre offices, network hubs, and data centres';
 
 -- ============================================================================
 -- Step 3: Create Fact Tables
@@ -435,6 +435,6 @@ SELECT '', 'sf_contacts', COUNT(*) FROM sf_contacts;
 -- Show all tables
 SHOW TABLES IN SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
 
-SELECT 'Gamma AI Demo data foundation complete!' AS status,
+SELECT 'CityFibre AI Demo data foundation complete!' AS status,
        '{{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}' AS database_name,
        CURRENT_TIMESTAMP() AS loaded_at;

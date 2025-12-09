@@ -1,5 +1,5 @@
 -- ============================================================================
--- Gamma AI Demo - Upload Files to Stages (DataOps Template)
+-- CityFibre AI Demo - Upload Files to Stages (DataOps Template)
 -- ============================================================================
 -- Description: Uploads CSV data files and unstructured documents to stages
 -- Variables: {{ DATABASE_NAME }}, {{ WAREHOUSE_NAME }}, {{ SCHEMA_NAME }}
@@ -14,7 +14,7 @@ USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
 -- Step 1: Upload CSV Data Files to DATA_STAGE/demo_data/
 -- ============================================================================
 
--- Upload all Gamma demo CSV data files (dimensions, facts, salesforce tables)
+-- Upload all CityFibre demo CSV data files (dimensions, facts, salesforce tables)
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/account_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/campaign_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/channel_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
@@ -37,46 +37,21 @@ PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/sf_opportuniti
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/vendor_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 
 -- ============================================================================
--- Step 2: Upload Unstructured Documents to DATA_STAGE/unstructured_docs/
+-- Step 2: Upload CityFibre Unstructured Documents to DATA_STAGE/unstructured_docs/
+-- (Only CityFibre-branded docs are uploaded)
 -- ============================================================================
 
--- Upload Demo Scripts
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/demo/*.md' @DATA_STAGE/unstructured_docs/demo/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload Finance Documents (PDF, DOCX, MD)
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/finance/*.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/finance/*.docx' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
+-- Upload CityFibre finance/strategy/network/sales/marketing/HR docs (markdown)
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/finance/*.md' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/finance/*.pptx' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload Finance Vendor Contracts
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/finance/vendor_contracts/*.md' @DATA_STAGE/unstructured_docs/finance/vendor_contracts/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload HR Documents
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/hr/*.pdf' @DATA_STAGE/unstructured_docs/hr/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/hr/*.docx' @DATA_STAGE/unstructured_docs/hr/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/strategy/*.md' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/network/*.md' @DATA_STAGE/unstructured_docs/network/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/sales/*.md' @DATA_STAGE/unstructured_docs/sales/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/marketing/*.md' @DATA_STAGE/unstructured_docs/marketing/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/hr/*.md' @DATA_STAGE/unstructured_docs/hr/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 
--- Upload Marketing Documents
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/marketing/*.pdf' @DATA_STAGE/unstructured_docs/marketing/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/marketing/*.docx' @DATA_STAGE/unstructured_docs/marketing/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/marketing/*.md' @DATA_STAGE/unstructured_docs/marketing/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/marketing/*.pptx' @DATA_STAGE/unstructured_docs/marketing/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload Network Documents
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/network/*.md' @DATA_STAGE/unstructured_docs/network/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload Sales Documents
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/sales/*.pdf' @DATA_STAGE/unstructured_docs/sales/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/sales/*.docx' @DATA_STAGE/unstructured_docs/sales/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/sales/*.md' @DATA_STAGE/unstructured_docs/sales/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/sales/*.pptx' @DATA_STAGE/unstructured_docs/sales/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload Strategy Documents
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/strategy/*.md' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
-
--- Upload Interim Results PDF (root level)
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/Interim-Results-for-six-months-to-30-June-2025.pdf' @DATA_STAGE/unstructured_docs/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+-- Upload official CityFibre reports (PDF)
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/CFIH-Group-2024-Accounts.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/CityFibre-Mid-year-update.pdf' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 
 -- ============================================================================
 -- Step 3: Refresh Stage Metadata (for Directory Tables)

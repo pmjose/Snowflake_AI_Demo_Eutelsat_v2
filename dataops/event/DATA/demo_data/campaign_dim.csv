@@ -1,61 +1,51 @@
 campaign_key,campaign_name,objective
-1,Horizon Cloud Launch 2025,Product Launch
-2,Microsoft Teams Phone Migration,Product Launch
-3,Cirrus Contact Centre Launch,Product Launch
-4,Gamma Secure Portfolio Launch,Product Launch
-5,SD-WAN Solution Launch,Product Launch
-6,Webex for Gamma Rebrand,Product Launch
-7,CircleLoop SMB Push,Product Launch
-8,Amazon Connect Managed Launch,Product Launch
-9,FUSION IoT Launch,Product Launch
-10,Gamma MDR Security Launch,Product Launch
-11,Partner Recruitment Q1,Partner Acquisition
-12,Partner Recruitment Q2,Partner Acquisition
-13,Partner Recruitment Q3,Partner Acquisition
-14,Partner Recruitment Q4,Partner Acquisition
-15,Gammaverse 2025,Partner Engagement
-16,Partner Roadshow UK,Partner Engagement
-17,Partner Technical Certification,Partner Engagement
-18,Partner Sales Enablement,Partner Engagement
-19,Channel Partner Awards,Partner Engagement
-20,Partner Portal Upgrade,Partner Engagement
-21,Enterprise Direct Campaign,Lead Gen
-22,SMB Digital Campaign,Lead Gen
-23,Public Sector Framework Push,Lead Gen
-24,Healthcare Vertical Campaign,Lead Gen
-25,Legal Services Campaign,Lead Gen
-26,Financial Services Campaign,Lead Gen
-27,Education Sector Push,Lead Gen
-28,Hospitality UCaaS Campaign,Lead Gen
-29,Retail Contact Centre Push,Lead Gen
-30,Manufacturing IoT Campaign,Lead Gen
-31,PSTN Switch Off Awareness,Awareness
-32,Cloud Migration Benefits,Awareness
-33,Hybrid Working Solutions,Awareness
-34,Cost Savings Calculator,Lead Gen
-35,Free UCaaS Assessment,Lead Gen
-36,Contact Centre Health Check,Lead Gen
-37,Security Posture Review,Lead Gen
-38,Network Assessment Offer,Lead Gen
-39,Customer Retention Programme,Retention
-40,At-Risk Account Save,Retention
-41,Contract Renewal Campaign,Retention
-42,Upsell Horizon Contact,Upsell
-43,Cross-Sell Gamma Secure,Upsell
-44,Add Seats Campaign,Upsell
-45,Connectivity Upgrade Push,Upsell
-46,Managed Services Upsell,Upsell
-47,Webinar Series Q1,Lead Gen
-48,Webinar Series Q2,Lead Gen
-49,Webinar Series Q3,Lead Gen
-50,Webinar Series Q4,Lead Gen
-51,LinkedIn Thought Leadership,Awareness
-52,Industry Report Campaign,Awareness
-53,Customer Success Stories,Awareness
-54,Analyst Relations Push,Awareness
-55,ESG Sustainability Campaign,Awareness
-56,UK Market Leadership,Awareness
-57,International Expansion NL,Lead Gen
-58,International Expansion ES,Lead Gen
-59,International Expansion DE,Lead Gen
-60,Brand Refresh 2025,Awareness
+1,Full Fibre City Launch - Phase 1,Product Launch
+2,Full Fibre City Launch - Phase 2,Product Launch
+3,Partner Acquisition Sprint H1 2025,Partner Acquisition
+4,Partner Acquisition Sprint H2 2025,Partner Acquisition
+5,Wholesale ISP Onboarding Accelerator,Partner Acquisition
+6,Vodafone Co-Marketing Programme,Partner Engagement
+7,Sky Broadband Fibre Launch,Partner Engagement
+8,TalkTalk Demand Generation,Partner Engagement
+9,Zen Fibre Demand Generation,Partner Engagement
+10,toob Co-Branded Launch,Partner Engagement
+11,Cuckoo Co-Branded Launch,Partner Engagement
+12,Smart City Backhaul Launch,Product Launch
+13,Public Sector Campus Fibre Push,Lead Gen
+14,Education Fibre Modernisation,Lead Gen
+15,NHS Site Fibre Upgrade,Lead Gen
+16,Transport Hub Fibre Programme,Lead Gen
+17,CCTV & IoT Backbone Awareness,Awareness
+18,Public WiFi Backhaul Campaign,Lead Gen
+19,Mobile & 5G Backhaul for MNOs,Product Launch
+20,Open RAN Fronthaul Trial,Product Launch
+21,Cloud On-Ramp AWS Direct Connect,Product Launch
+22,Cloud On-Ramp Azure ExpressRoute,Product Launch
+23,Cloud On-Ramp Google Interconnect,Product Launch
+24,Enterprise DIA Upgrade Offer,Upsell
+25,Resilient Ethernet Pair Offer,Upsell
+26,Dark Fibre Metro Ring Launch,Product Launch
+27,Dark Fibre Long Haul Expansion,Product Launch
+28,Local Authority Voucher Awareness,Awareness
+29,PSTN Switch-Off Fibre Migration,Awareness
+30,SMB Digital Full Fibre Push,Lead Gen
+31,Home Full Fibre Speed Upgrade,Upsell
+32,Home Security Backhaul Bundle,Upsell
+33,Premium 5.5G Home Tier Awareness,Awareness
+34,Net Adds Acceleration Q3,Retention
+35,Net Adds Acceleration Q4,Retention
+36,Partner Portal Upgrade,Partner Engagement
+37,Partner Technical Accreditation,Partner Engagement
+38,Customer NPS Improvement Programme,Retention
+39,Service Delivery Excellence,Awareness
+40,ESG & Sustainability Impact,Awareness
+41,Industry Analyst Relations,Awareness
+42,Investor Update Roadshow,Awareness
+43,Smart Poles & Street Works Fibre,Lead Gen
+44,Campus Fibre WiFi Modernisation,Lead Gen
+45,Local Marketing Pop-Up Events,Awareness
+46,Webinar Series: Fibre Performance,Lead Gen
+47,Webinar Series: Partner GTM,Partner Engagement
+48,Webinar Series: Network Resilience,Awareness
+49,Case Study: Public Sector Fibre,Awareness
+50,Case Study: Enterprise DIA,Awareness

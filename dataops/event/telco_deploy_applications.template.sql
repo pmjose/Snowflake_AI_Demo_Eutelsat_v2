@@ -1,5 +1,5 @@
 -- ============================================================================
--- Gamma AI Demo - Deploy Applications (DataOps Template)
+-- CityFibre AI Demo - Deploy Applications (DataOps Template)
 -- ============================================================================
 -- Description: Deploys stored procedures, functions, and Intelligence Agent
 -- Variables: {{ DATABASE_NAME }}, {{ WAREHOUSE_NAME }}, {{ SCHEMA_NAME }}
@@ -59,7 +59,7 @@ $$
 def send_mail(session, recipient, subject, text):
     session.call(
         'SYSTEM$SEND_EMAIL',
-        'gamma_email_int',
+        'cityfibre_email_int',
         recipient,
         subject,
         text,
@@ -77,7 +77,7 @@ RETURNS STRING
 LANGUAGE PYTHON
 RUNTIME_VERSION = 3.11
 HANDLER = 'get_page'
-EXTERNAL_ACCESS_INTEGRATIONS = (gamma_external_access_integration)
+EXTERNAL_ACCESS_INTEGRATIONS = (cityfibre_external_access_integration)
 PACKAGES = ('requests', 'beautifulsoup4')
 AS
 $$
@@ -299,38 +299,38 @@ CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI
 -- Step 5: Create Snowflake Intelligence Agent
 -- ============================================================================
 
-CREATE OR REPLACE AGENT {{ env.EVENT_DATABASE | default('GAMMA_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('GAMMA_SCHEMA') }}.Gamma_Executive_Agent
-WITH PROFILE='{ "display_name": "Gamma UK Executive Agent" }'
-    COMMENT=$$ Gamma Communications B2B intelligence agent for C-level executives (CEO, CFO, CMO, CCO). Covers UCaaS seats, channel partner revenue, ARR/MRR, NPS, campaigns, and UK B2B market analysis. All figures in British Pounds (£). $$
+CREATE OR REPLACE AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent
+WITH PROFILE='{ "display_name": "CityFibre UK Executive Agent" }'
+    COMMENT=$$ CityFibre wholesale full fibre intelligence agent for C-level executives (CEO, CFO, CMO, CCO). Covers build progress, premises passed/ready for service, take-up across residential, business, public sector, and mobile backhaul, channel partners, ARR/MRR, NPS, campaigns, and UK full fibre market analysis. All figures in British Pounds (£). $$
 FROM SPECIFICATION $$
 {
   "models": {
     "orchestration": ""
   },
   "instructions": {
-    "response": "You are a business intelligence analyst for Gamma Communications, a UK B2B communications provider. You have access to sales transactions, financial metrics, marketing campaigns, HR information, and network infrastructure data. All monetary values are in British Pounds (£). Customer verticals are SMB, Enterprise, Public Sector, and Partner. Industries include Healthcare, Manufacturing, Financial Services, Technology, Legal Services, and more. UK regions include London, South East, Scotland, Wales, North West, and others. Competitors are 8x8, RingCentral, Mitel, Vonage, and Microsoft Direct. Products include Horizon, Microsoft Teams Phone, SIP Trunks, Contact Centre, and Connectivity. Network infrastructure includes data centres (London, Manchester, Glasgow), carrier connections (BT, Virgin Media, CityFibre), and platform metrics. Provide visualizations where helpful - use line charts for trends, bar charts for comparisons.\n\n**IMPORTANT GUARDRAILS:**\n- You MUST ONLY answer questions related to Gamma Communications business data, including sales, finance, marketing, HR, strategy documents, network infrastructure, and competitive analysis.\n- You MUST NOT answer general knowledge questions, trivia, current events, politics, celebrities, sports, or any topic not directly related to Gamma's business operations.\n- If asked about unrelated topics (like 'who is the prime minister', 'what is the weather', 'tell me a joke', etc.), politely decline and redirect: 'I can only help with questions about Gamma Communications business data. For example, you could ask about sales performance, revenue by product, network uptime, or competitive analysis.'\n- Never use external knowledge to answer questions - only use the data and documents available through your tools.",
-    "orchestration": "Use cortex search for policy documents, strategy reports, vendor contracts, network infrastructure, and competitive analysis. Use cortex analyst for structured data queries on sales, revenue, campaigns, and HR.\n\n**GUARDRAIL CHECK:** Before processing ANY query, first determine if it relates to Gamma Communications business data. If the query is about general knowledge, current events, politics, entertainment, or any topic NOT related to Gamma's sales, finance, marketing, HR, network infrastructure, strategy, or competitive landscape - DO NOT use any tools and instead respond with a polite redirect to business-related questions.\n\nFor Sales Datamart: Contains B2B sales transactions. Products include UCaaS (Horizon, Teams Phone, Webex), CCaaS (Horizon Contact, Cirrus), Voice (SIP Trunks, Inbound), Connectivity (Broadband, Ethernet, SD-WAN), and Security (MDR, SOC). Customer verticals are SMB, Enterprise, Public Sector, Partner. Industries include Healthcare, Manufacturing, Financial Services, Technology, Legal Services, Education, Hospitality.\n\nFor Marketing Datamart: Campaigns include Horizon Launch, Teams Phone Migration, Partner Recruitment, PSTN Switch-off Awareness. Channels include Channel Partners, Direct Enterprise, Webinars, LinkedIn, Events.\n\nFor Strategy Documents: Search for market position, competitive analysis vs 8x8/RingCentral/Mitel, Microsoft partnership, ESG reports, Ofcom compliance, board presentations, investor relations.\n\nFor Network Infrastructure (USE 'Search Internal Documents: Network' tool): When users ask about data centres, data center locations, network capacity, uptime, platform performance, carrier connections (BT, Virgin Media, CityFibre, Colt, Zayo), concurrent call capacity, SBC clusters, media servers, voice quality (MOS scores, jitter, latency) - ALWAYS use the Network search tool. Data centres are in London (LD4), Manchester (MA1), and Glasgow (GL1).\n\n",
+    "response": "You are a business intelligence analyst for CityFibre, the UK's independent wholesale-only full fibre network. You have access to build metrics, sales transactions, financial performance, marketing campaigns, HR information, and network infrastructure data. All monetary values are in British Pounds (£). Customer and market segments include residential homes, business, public sector campuses, mobile backhaul, and wholesale ISP partners. Network coverage spans UK regions (London, South East, Scotland, Wales, North West, and others) with 4.6 million premises ready for service as of June 2025 and a target of 8 million (CityFibre Mid-year Update 2025). Consumer connections total 620,000 with 102,000 net adds in H1 2025; speeds reach up to 5.5 Gbps and are up to 95x faster than FTTC with built-in reliability (CityFibre website). Partners include Vodafone, Sky, TalkTalk, Zen, toob, and Cuckoo. Competitors include BT Openreach/Virgin Media O2, Hyperoptic, and Gigaclear. Provide visualizations where helpful - use line charts for trends, bar charts for comparisons.\n\n**IMPORTANT GUARDRAILS:**\n- You MUST ONLY answer questions related to CityFibre business data, including build programmes, sales, finance, marketing, HR, network infrastructure, and competitive analysis.\n- You MUST NOT answer general knowledge questions, trivia, current events, politics, celebrities, sports, or any topic not directly related to CityFibre's business operations.\n- If asked about unrelated topics, politely decline and redirect: 'I can only help with questions about CityFibre data. You can ask about premises passed, take-up, partner performance, network uptime, or competitive positioning.'\n- Never use external knowledge to answer questions - only use the data and documents available through your tools.",
+    "orchestration": "Use cortex search for finance reports (including official accounts and mid-year update), strategy documents, partner contracts, network infrastructure, and competitive analysis. Use cortex analyst for structured data queries on build progress, sales, revenue, campaigns, and HR.\n\n**GUARDRAIL CHECK:** Before processing ANY query, first determine if it relates to CityFibre business data. If the query is about general knowledge, current events, politics, entertainment, or any topic NOT related to CityFibre's build, sales, finance, marketing, HR, network infrastructure, strategy, or competitive landscape - DO NOT use any tools and instead respond with a polite redirect to business-related questions.\n\nFor Sales Datamart: Contains sales and take-up across residential, business, public sector, mobile backhaul, and wholesale ISP partners. Products include full fibre broadband (up to 5.5Gbps), Business Internet & Ethernet, Dark Fibre & Backbone, Mobile & 5G Backhaul, Wholesale Partner Access, Smart City & Public Sector, Professional Services, Network Add-Ons, Channel Partner Enablement, and Infrastructure Solutions. UK regions include London, South East, Scotland, Wales, North West, and others.\n\nFor Marketing Datamart: Campaigns include Full Fibre City Launches, Partner Acquisition, Smart City enablement, PSTN switch-off awareness, and digital demand generation. Channels include Wholesale Partners, Direct Enterprise, Events, Webinars, LinkedIn, and local marketing.\n\nFor Strategy Documents: Search for market position, financing updates, ESG commitments, Ofcom compliance, partner portfolio, and board presentations.\n\nFor Network Infrastructure (USE 'Search Internal Documents: Network' tool): When users ask about premises passed, ready-for-service counts, uptime, resilience, carrier connections (BT Openreach, Virgin Media O2, mobile MNOs), backhaul capacity, latency, jitter, or fibre routes, ALWAYS use the Network search tool.",
     "sample_questions": [
       {
-        "question": "What is our total revenue by customer industry?"
+        "question": "How many premises are passed and ready for service by region, and what is take-up?"
       },
       {
-        "question": "Where are our data centres located and what is our network capacity?"
+        "question": "Which ISP partners (Vodafone, Sky, TalkTalk, Zen, toob, Cuckoo) are driving the most net adds?"
       },
       {
-        "question": "How do we compare to 8x8 and RingCentral in the UCaaS market?"
+        "question": "Summarize the £2.3bn 2025 financing and its impact on build plans."
       },
       {
-        "question": "Which marketing campaigns generated the most leads?"
+        "question": "What are our top revenue-generating fibre products and backhaul services?"
       },
       {
-        "question": "What are our top selling products by revenue?"
+        "question": "Show network uptime, latency, and resilience for the full fibre footprint."
       },
       {
-        "question": "What is our network uptime and platform reliability?"
+        "question": "How many public sector and smart city sites are connected and what is their NPS?"
       },
       {
-        "question": "What is our data centre capacity and concurrent call handling?"
+        "question": "How does take-up pace compare to the 620k connected customers baseline?"
       }
     ]
   },
@@ -339,35 +339,35 @@ FROM SPECIFICATION $$
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query Finance Datamart",
-        "description": "Query Gamma financial data: revenue by product category (UCaaS, CCaaS, Voice, Connectivity), partner economics, vendor spend (Microsoft, Cisco, AWS), expenses, and department costs. All amounts in British Pounds (£)."
+        "description": "Query CityFibre financial data: build capex, revenue by fibre product category (full fibre broadband, ethernet, dark fibre, backhaul, wholesale partner access), partner economics, vendor spend (construction partners, cloud providers), expenses, and department costs. All amounts in British Pounds (£)."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query Sales Datamart",
-        "description": "Query Gamma B2B sales data: sales by customer vertical (SMB/Enterprise/Public Sector/Partner), customer industry (Healthcare, Manufacturing, Financial Services, etc.), products (Horizon, Teams Phone, SIP Trunks, Contact Centre), UK regions (London, Scotland, Wales), and revenue. Use for revenue analysis, top customers, and product performance."
+        "description": "Query CityFibre sales and take-up data: by customer/market segment (Homes/Enterprise/Public Sector/Partner/Mobile), industry, products (Full Fibre Broadband, Business Internet & Ethernet, Dark Fibre & Backbone, Mobile & 5G Backhaul, Wholesale Partner Access, Smart City & Public Sector, Add-Ons), UK regions (London, Scotland, Wales, North West, etc.), and revenue. Use for revenue analysis, top customers, partner performance, and product adoption."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query HR Datamart",
-        "description": "Query Gamma workforce data: employees, departments, jobs, channel account managers, salaries, and attrition. Employee names include sales representatives and partner managers."
+        "description": "Query CityFibre workforce data: employees, departments, jobs, channel account managers, salaries, and attrition. Employee names include build programme leaders and partner managers."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query Marketing Datamart",
-        "description": "Query Gamma marketing data: campaigns (Horizon Launch, Teams Phone Migration, Partner Recruitment, PSTN Switch-off), channels (Channel Partners, Digital, Events, Webinars, LinkedIn), spend, impressions, leads, and ROI. Use for campaign effectiveness and partner marketing analysis."
+        "description": "Query CityFibre marketing data: campaigns (Full Fibre City Launch, Partner Acquisition, Smart City enablement, PSTN Switch-off awareness), channels (Wholesale Partners, Digital, Events, Webinars, LinkedIn), spend, impressions, leads, and ROI. Use for campaign effectiveness and partner marketing analysis."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Finance",
-        "description": "Search Gamma finance documents: Financial Reports, ARPU per seat analysis, B2B unit economics (LTV/CAC), partner revenue mix, ESG sustainability report, Ofcom compliance, and vendor contracts (Microsoft, Cisco, AWS)."
+        "description": "Search CityFibre finance documents: official accounts, 2025 mid-year update (£2.3bn financing), ARPU/ARPA analysis, unit economics, partner revenue mix, ESG sustainability report, Ofcom compliance, and vendor contracts."
       }
     },
     {
@@ -381,7 +381,7 @@ FROM SPECIFICATION $$
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Sales",
-        "description": "Search Gamma sales documents: Channel Partner Playbook 2025, Churn Reduction Playbook, Partner Performance Reports, and Customer Success Stories. Includes competitive positioning vs 8x8, RingCentral, Mitel, Vonage."
+        "description": "Search CityFibre sales documents: channel partner playbooks, take-up performance reports, wholesale ISP onboarding guides, and customer success stories. Includes competitive positioning vs BT Openreach/Virgin Media O2 and other fibre altnets."
       }
     },
     {
@@ -395,14 +395,14 @@ FROM SPECIFICATION $$
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Strategy",
-        "description": "Search CEO/strategy documents including UCaaS growth reports, market position analysis, cloud communications roadmap, competitive landscape (8x8, RingCentral), investor relations FAQ, board presentations, ESG reports, and Ofcom compliance."
+        "description": "Search CEO/strategy documents including network build roadmaps, financing summaries, market position analysis vs Openreach/Virgin Media O2, investor relations FAQ, board presentations, ESG reports, and Ofcom compliance."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Network",
-        "description": "Search network infrastructure documents including data centres (London LD4, Manchester MA1, Glasgow GL1), platform uptime, carrier connections (BT, Virgin Media, CityFibre, Colt, Zayo), concurrent call capacity, SBC clusters, media servers, voice quality metrics (MOS score, jitter, latency), and network redundancy."
+        "description": "Search network infrastructure documents including fibre footprint coverage (premises passed and ready for service), platform uptime, carrier/backhaul connections, latency/jitter, resilience, smart city backhaul, and network redundancy."
       }
     },
     {
@@ -566,22 +566,22 @@ $$;
 -- ============================================================================
 
 -- Grant USAGE on the agent to the analyst role (CEO, CFO, CRO users have this role)
-GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('GAMMA_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('GAMMA_SCHEMA') }}.Gamma_Executive_Agent 
+GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent 
     TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
 -- Also grant to ACCOUNTADMIN for admin access
-GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('GAMMA_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('GAMMA_SCHEMA') }}.Gamma_Executive_Agent 
+GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent 
     TO ROLE ACCOUNTADMIN;
 
 -- Grant to PUBLIC for broader access (optional - remove if you want restricted access)
-GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('GAMMA_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('GAMMA_SCHEMA') }}.Gamma_Executive_Agent 
+GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent 
     TO ROLE PUBLIC;
 
 -- ============================================================================
 -- Verification
 -- ============================================================================
 
-SELECT 'Gamma AI Demo applications deployed successfully!' AS status,
+SELECT 'CityFibre AI Demo applications deployed successfully!' AS status,
        'Procedures: Get_File_Presigned_URL_SP, send_mail, Web_scrape, GENERATE_STREAMLIT_APP' AS procedures_created,
-       'Agent: {{ env.EVENT_DATABASE | default("GAMMA_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("GAMMA_SCHEMA") }}.Gamma_Executive_Agent' AS agent_created,
+       'Agent: {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.CityFibre_Executive_Agent' AS agent_created,
        CURRENT_TIMESTAMP() AS deployed_at;

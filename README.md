@@ -15,7 +15,9 @@
 
 ## 🎯 Overview
 
-This project demonstrates how to build a production-ready AI assistant for **Gamma Communications**, a UK B2B telecommunications provider, using **Snowflake Cortex AI**, **Snowflake Intelligence**, and **Cortex Analyst**.
+This project demonstrates how to build a production-ready AI assistant for **CityFibre**, the UK's independent wholesale-only full fibre network. It uses **Snowflake Cortex AI**, **Snowflake Intelligence**, and **Cortex Analyst** to answer questions about build progress, premises passed/ready for service, partner take-up, financing, and network reliability (e.g., 4.6M premises ready for service and 620k consumers connected as of H1 2025; speeds up to 5.5 Gbps, up to 95x faster than FTTC; target 8M premises)\*.
+
+\*Sources: `reports/CityFibre-Mid-year-update.pdf`, `reports/CFIH-Group-2024-Accounts.pdf`, and the [CityFibre website](https://cityfibre.com/).
 
 ### What You Get
 
@@ -28,7 +30,7 @@ This project demonstrates how to build a production-ready AI assistant for **Gam
 **AI & ML Tools**:
 - **🔍 6 Search Services** - Finance, HR, Marketing, Sales, Strategy, Network
 - **📈 4 Semantic Views** - Finance, Sales, Marketing, HR datamarts
-- **🤖 1 AI Agent** - Gamma Executive Agent with 12 tools
+- **🤖 1 AI Agent** - CityFibre Executive Agent with 12 tools
 - **💻 Streamlit Apps** - Cortex Agent interface
 - **📓 Snowflake Notebooks** - Data processing workflows
 
@@ -50,7 +52,7 @@ pip install snowflake-cli-labs
 
 # 2. Clone repository
 git clone <repository-url>
-cd build-an-ai-assistant-for-telco-using-aisql-and-snowflake-intelligence
+cd Snowflake_AI_Demo_CityFibre
 
 # 3. Configure Snowflake connection
 snow connection add --connection-name telco-local
@@ -63,8 +65,8 @@ cd local-testing
 ### What Gets Deployed
 
 ```
-✅ Database: GAMMA_AI_DEMO
-✅ Warehouse: GAMMA_DEMO_WH
+✅ Database: CITYFIBRE_AI_DEMO
+✅ Warehouse: CITYFIBRE_DEMO_WH
 ✅ Role: TELCO_ANALYST_ROLE (with CORTEX_USER)
 ✅ 20+ tables with demo data
 ✅ 6 Cortex Search Services
@@ -103,7 +105,7 @@ Natural language SQL queries across business datamarts:
 | **MARKETING_SEMANTIC_VIEW** | Campaigns, channels, leads, ROI |
 | **HR_SEMANTIC_VIEW** | Employees, departments, salaries, attrition |
 
-### 🤖 Gamma Executive Agent
+### 🤖 CityFibre Executive Agent
 
 **12 integrated tools**:
 - 4 Cortex Analyst tools (Query Finance/Sales/Marketing/HR Datamarts)
@@ -123,7 +125,7 @@ Natural language SQL queries across business datamarts:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    GAMMA AI DEMO PLATFORM                           │
+│                   CITYFIBRE AI DEMO PLATFORM                        │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  Data Sources           AI Processing         Semantic Layer       │
@@ -135,7 +137,7 @@ Natural language SQL queries across business datamarts:
 │  ┌────────────────────────────────────────────────────────────────┐│
 │  │                 SNOWFLAKE INTELLIGENCE                         ││
 │  ├────────────────────────────────────────────────────────────────┤│
-│  │  Gamma Executive Agent: 12 Tools | Multi-Modal | REST API     ││
+│  │  CityFibre Executive Agent: 12 Tools | Multi-Modal | REST API  ││
 │  └────────────────────────────────────────────────────────────────┘│
 │                                                                     │
 │  ┌────────────────────────────────────────────────────────────────┐│
@@ -281,9 +283,9 @@ Key configuration options:
 
 ```yaml
 variables:
-  EVENT_DATABASE: "GAMMA_AI_DEMO"
-  EVENT_SCHEMA: "GAMMA_SCHEMA"
-  EVENT_WAREHOUSE: "GAMMA_DEMO_WH"
+  EVENT_DATABASE: "CITYFIBRE_AI_DEMO"
+  EVENT_SCHEMA: "CITYFIBRE_SCHEMA"
+  EVENT_WAREHOUSE: "CITYFIBRE_DEMO_WH"
   EVENT_ATTENDEE_ROLE: "TELCO_ANALYST_ROLE"
 ```
 
@@ -326,7 +328,7 @@ This project is provided for educational and demonstration purposes.
 
 **Data Notes**:
 - All data is synthetic/generated for demonstration
-- Gamma Communications is a fictional UK B2B telco example
+- CityFibre facts in prompts are sourced from the included official reports (`reports/CFIH-Group-2024-Accounts.pdf`, `reports/CityFibre-Mid-year-update.pdf`) and the public website; numbers are for demo only
 - Use only for learning Snowflake Cortex AI capabilities
 
 ---

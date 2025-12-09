@@ -6,14 +6,14 @@ ALTER SESSION SET QUERY_TAG = '''{"origin":"sf_sit-is", "name":"Build an AI Assi
 -- ============================================================================
 -- Create Warehouse Early (required for EXECUTE IMMEDIATE blocks)
 -- ============================================================================
-CREATE WAREHOUSE IF NOT EXISTS {{ env.EVENT_WAREHOUSE | default('GAMMA_DEMO_WH') }}
+CREATE WAREHOUSE IF NOT EXISTS {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}
     WITH WAREHOUSE_SIZE = 'XSMALL'
     AUTO_SUSPEND = 60
     AUTO_RESUME = TRUE
     INITIALLY_SUSPENDED = FALSE
     COMMENT = 'Demo warehouse for Telco AI hands-on lab';
 
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('GAMMA_DEMO_WH') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
 
 -- ============================================================================
 -- Disable Behavior Change Bundle and Configure Authentication Policy
@@ -221,25 +221,25 @@ CREATE OR REPLACE NETWORK RULE telco_web_access_rule
   MODE = EGRESS
   TYPE = HOST_PORT
   VALUE_LIST = ('0.0.0.0:80', '0.0.0.0:443')
-  COMMENT = 'Permissive network access for Gamma demo web scraping';
+  COMMENT = 'Permissive network access for CityFibre demo web scraping';
 
-CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION gamma_external_access_integration
+CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION cityfibre_external_access_integration
   ALLOWED_NETWORK_RULES = (telco_web_access_rule)
   ENABLED = TRUE
   COMMENT = 'External access for web scraping and API calls';
 
-GRANT USAGE ON INTEGRATION gamma_external_access_integration TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
+GRANT USAGE ON INTEGRATION cityfibre_external_access_integration TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
 -- ============================================================================
 -- Step 8: Create Email Notification Integration
 -- ============================================================================
 
-CREATE OR REPLACE NOTIFICATION INTEGRATION gamma_email_int
+CREATE OR REPLACE NOTIFICATION INTEGRATION cityfibre_email_int
   TYPE = EMAIL
   ENABLED = TRUE
   COMMENT = 'Email integration for sending notifications from Intelligence Agent';
 
-GRANT USAGE ON INTEGRATION gamma_email_int TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
+GRANT USAGE ON INTEGRATION cityfibre_email_int TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
 -- ============================================================================
 -- Step 9: Create Users

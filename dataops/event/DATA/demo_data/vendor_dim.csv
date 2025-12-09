@@ -13,7 +13,7 @@ vendor_key,vendor_name,vertical,address,city,county,postcode
 12,Virgin Media Business,Connectivity Provider,500 Brook Drive,Reading,Berkshire,RG2 6UU
 13,TalkTalk Business,Connectivity Provider,11 Evesham Street,London,Greater London,W11 4AR
 14,Vodafone Business,Connectivity Provider,1 Kingdom Street,London,Greater London,W2 6BY
-15,Gamma Mobile Network,Mobile Partner,5 Fleet Place,London,Greater London,EC4M 7RD
+15,Neutral Host Mobile Partner,Mobile Backhaul Partner,5 Fleet Place,London,Greater London,EC4M 7RD
 16,Salesforce UK,CRM Partner,110 Bishopsgate,London,Greater London,EC2N 4AY
 17,HubSpot UK,CRM Partner,6th Floor One Lyric Square,London,Greater London,W6 0NB
 18,Zendesk UK,CX Platform,25 Wilton Road,London,Greater London,SW1V 1LW

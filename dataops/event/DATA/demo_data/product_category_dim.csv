@@ -1,11 +1,11 @@
 category_key,category_name,vertical
-1,Gamma Connect,Enterprise
-2,Gamma Experience,Enterprise
-3,Gamma Enable,All
-4,Gamma Secure,Enterprise
-5,Gamma Solutions,Enterprise
-6,Connectivity,All
+1,Full Fibre Broadband,Homes
+2,Business Internet & Ethernet,Enterprise
+3,Dark Fibre & Backbone,Enterprise
+4,Mobile & 5G Backhaul,Mobile
+5,Wholesale Partner Access,Partner
+6,Smart City & Public Sector,Public Sector
 7,Professional Services,Enterprise
-8,Add-Ons,All
-9,Channel Partner Services,Partner
-10,Public Sector Solutions,Enterprise
+8,Network Add-Ons,All
+9,Channel Partner Enablement,Partner
+10,Infrastructure Solutions,Enterprise

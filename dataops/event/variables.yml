@@ -1,17 +1,17 @@
 # ============================================================================
-# Gamma AI Demo - DataOps Event Variables Configuration
+# CityFibre AI Demo - DataOps Event Variables Configuration
 # ============================================================================
 # Description: Event-specific variables for DataOps.live pipeline deployment
 # Usage: Referenced by pipeline YAMLs and *.template.sql files
 # Naming Convention: Use EVENT_ prefix for all event-specific variables
-# Demo: Gamma UK B2B Communications - UCaaS, CCaaS, Voice, Connectivity
+# Demo: CityFibre UK full fibre infrastructure across residential, business, public sector, and mobile backhaul
 # ============================================================================
 
 variables:
   # Event Metadata
-  EVENT_NAME: "Gamma AI Demo - Build an AI Assistant for Telco"
-  EVENT_TYPE: "gamma_demo"
-  EVENT_DATE: "2025-01-15"
+  EVENT_NAME: "CityFibre AI Demo - Full Fibre Intelligence"
+  EVENT_TYPE: "cityfibre_demo"
+  EVENT_DATE: "2025-12-09"
   EVENT_DEPLOY_TELCO: "true"
 
   # User Configuration
@@ -45,9 +45,9 @@ variables:
 
   # Snowflake Configuration - EVENT_ Prefixed
   EVENT_ATTENDEE_ROLE: "TELCO_ANALYST_ROLE"
-  EVENT_DATABASE: "GAMMA_AI_DEMO"
-  EVENT_SCHEMA: "GAMMA_SCHEMA"
-  EVENT_WAREHOUSE: "GAMMA_DEMO_WH"
+  EVENT_DATABASE: "CITYFIBRE_AI_DEMO"
+  EVENT_SCHEMA: "CITYFIBRE_SCHEMA"
+  EVENT_WAREHOUSE: "CITYFIBRE_DEMO_WH"
   EVENT_WAREHOUSE_SIZE: "XSMALL"
   EVENT_AUTO_SUSPEND: 300
 
@@ -63,7 +63,7 @@ variables:
   EVENT_NOTEBOOK_STAGE: "NOTEBOOK_STAGE"
   EVENT_STREAMLIT_STAGE: "STREAMLIT_STAGE"
 
-  # Gamma Demo Data Model Info (for reference)
+  # CityFibre Demo Data Model Info (for reference)
   # Dimension Tables: product_category_dim, product_dim, vendor_dim, customer_dim,
   #                   account_dim, department_dim, region_dim, sales_rep_dim,
   #                   campaign_dim, channel_dim, employee_dim, job_dim, location_dim
@@ -72,5 +72,5 @@ variables:
   # Semantic Views: FINANCE_SEMANTIC_VIEW, SALES_SEMANTIC_VIEW, MARKETING_SEMANTIC_VIEW, HR_SEMANTIC_VIEW
   # Search Services: Search_finance_docs, Search_hr_docs, Search_marketing_docs,
   #                  Search_sales_docs, Search_strategy_docs, Search_demo_docs, Search_network_docs
-  # Intelligence Agent: Gamma_Executive_Agent
+  # Intelligence Agent: CityFibre_Executive_Agent
 

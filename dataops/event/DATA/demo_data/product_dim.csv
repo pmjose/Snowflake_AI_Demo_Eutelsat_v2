@@ -1,65 +1,65 @@
 product_key,product_name,category_key,category_name,vertical
-1,Horizon Cloud Phone System,1,Gamma Connect,Enterprise
-2,Horizon Collaborate,1,Gamma Connect,Enterprise
-3,Microsoft Teams Phone,1,Gamma Connect,Enterprise
-4,Webex for Gamma,1,Gamma Connect,Enterprise
-5,CircleLoop,1,Gamma Connect,SMB
-6,iPECS Cloud,1,Gamma Connect,Enterprise
-7,Horizon Desktop App,1,Gamma Connect,All
-8,Horizon Mobile App,1,Gamma Connect,All
-9,Horizon Contact Centre,2,Gamma Experience,Enterprise
-10,Cirrus Contact Centre,2,Gamma Experience,Enterprise
-11,Amazon Connect Managed,2,Gamma Experience,Enterprise
-12,Secure Payments PCI,2,Gamma Experience,Enterprise
-13,Gamma Contact for Partners,2,Gamma Experience,Partner
-14,CX Analytics Suite,2,Gamma Experience,Enterprise
-15,Workforce Management,2,Gamma Experience,Enterprise
-16,SIP Trunks Standard,3,Gamma Enable,All
-17,SIP Trunks Enterprise,3,Gamma Enable,Enterprise
-18,Inbound Services,3,Gamma Enable,All
-19,Phoneline+,3,Gamma Enable,SMB
-20,FUSION IoT,3,Gamma Enable,Enterprise
-21,Cloud Connect Webex Calling,3,Gamma Enable,Enterprise
-22,Number Porting Services,3,Gamma Enable,All
-23,International Calling,3,Gamma Enable,All
-24,Gamma MDR,4,Gamma Secure,Enterprise
-25,Managed SOC,4,Gamma Secure,Enterprise
-26,SafeWeb Cyber Security,4,Gamma Secure,SMB
-27,Vulnerability Management,4,Gamma Secure,Enterprise
-28,Security Awareness Training,4,Gamma Secure,All
-29,Cyber Maturity Assessment,4,Gamma Secure,Enterprise
-30,Endpoint Detection Response,4,Gamma Secure,Enterprise
-31,Enterprise Managed Solutions,5,Gamma Solutions,Enterprise
-32,Managed Networks,5,Gamma Solutions,Enterprise
-33,SD-WAN Solution,5,Gamma Solutions,Enterprise
-34,Clearing as a Service,5,Gamma Solutions,Public Sector
-35,GammaUCX,5,Gamma Solutions,Enterprise
-36,Migration Services,5,Gamma Solutions,Enterprise
-37,Business Broadband,6,Connectivity,SMB
-38,Ethernet First Mile,6,Connectivity,Enterprise
-39,Dedicated Ethernet,6,Connectivity,Enterprise
-40,FTTP Business,6,Connectivity,All
-41,4G/5G Backup,6,Connectivity,All
-42,Gamma Mobile,6,Connectivity,All
-43,Technical Onboarding,7,Professional Services,All
-44,Implementation Services,7,Professional Services,Enterprise
-45,Training and Certification,7,Professional Services,Partner
-46,Solution Design,7,Professional Services,Enterprise
-47,Project Management,7,Professional Services,Enterprise
-48,Device Protection Plus,8,Add-Ons,All
-49,Call Recording,8,Add-Ons,All
-50,Wallboards,8,Add-Ons,Enterprise
-51,CRM Integration,8,Add-Ons,Enterprise
-52,Microsoft 365 Integration,8,Add-Ons,All
-53,API Access,8,Add-Ons,Enterprise
-54,Partner Portal Access,9,Channel Partner Services,Partner
-55,Partner Training Programme,9,Channel Partner Services,Partner
-56,Marketing Development Funds,9,Channel Partner Services,Partner
-57,Partner Technical Support,9,Channel Partner Services,Partner
-58,White Label Services,9,Channel Partner Services,Partner
-59,Dealer Programme,9,Channel Partner Services,Partner
-60,Public Sector Horizon,10,Public Sector Solutions,Enterprise
-61,NHS Compliant Solutions,10,Public Sector Solutions,Enterprise
-62,Education Cloud Communications,10,Public Sector Solutions,Enterprise
-63,Local Government Suite,10,Public Sector Solutions,Enterprise
-64,Central Government Secure,10,Public Sector Solutions,Enterprise
+1,CityFibre Full Fibre 500,1,Full Fibre Broadband,Homes
+2,CityFibre Full Fibre 1G,1,Full Fibre Broadband,Homes
+3,CityFibre Full Fibre 2G,1,Full Fibre Broadband,Homes
+4,Premium Full Fibre 5.5G,1,Full Fibre Broadband,Homes
+5,Smart WiFi Mesh for Homes,1,Full Fibre Broadband,Homes
+6,Home Voice over Fibre,1,Full Fibre Broadband,Homes
+7,Symmetric Home Pro 1G,1,Full Fibre Broadband,SMB
+8,Home Security Backhaul,1,Full Fibre Broadband,Homes
+9,Business Fibre DIA 1G,2,Business Internet & Ethernet,Enterprise
+10,Business Fibre DIA 10G,2,Business Internet & Ethernet,Enterprise
+11,Resilient Ethernet Pair,2,Business Internet & Ethernet,Enterprise
+12,National Ethernet Aggregation,2,Business Internet & Ethernet,Enterprise
+13,Cloud Connect for AWS,2,Business Internet & Ethernet,Enterprise
+14,Cloud Connect for Azure,2,Business Internet & Ethernet,Enterprise
+15,Cloud Connect for Google Cloud,2,Business Internet & Ethernet,Enterprise
+16,Metro Dark Fibre Pair,3,Dark Fibre & Backbone,Enterprise
+17,Long Haul Dark Fibre,3,Dark Fibre & Backbone,Enterprise
+18,Data Centre Cross Connect,3,Dark Fibre & Backbone,Enterprise
+19,Metro Ring Access,3,Dark Fibre & Backbone,Enterprise
+20,Resilient Backbone Spur,3,Dark Fibre & Backbone,Enterprise
+21,Small Cell Backhaul,4,Mobile & 5G Backhaul,Mobile
+22,Macro Tower Backhaul,4,Mobile & 5G Backhaul,Mobile
+23,Open RAN Fronthaul,4,Mobile & 5G Backhaul,Mobile
+24,Edge Data Centre Access,4,Mobile & 5G Backhaul,Mobile
+25,Emergency Services Network Backhaul,4,Mobile & 5G Backhaul,Public Sector
+26,Vodafone Wholesale FTTP,5,Wholesale Partner Access,Partner
+27,Sky Wholesale FTTP,5,Wholesale Partner Access,Partner
+28,TalkTalk Wholesale FTTP,5,Wholesale Partner Access,Partner
+29,Zen Wholesale FTTP,5,Wholesale Partner Access,Partner
+30,Cuckoo Wholesale FTTP,5,Wholesale Partner Access,Partner
+31,toob Wholesale FTTP,5,Wholesale Partner Access,Partner
+32,Business Wholesale Broadband Bundle,5,Wholesale Partner Access,Partner
+33,ISP Onboarding Accelerator,5,Wholesale Partner Access,Partner
+34,Local Authority Campus Fibre,6,Smart City & Public Sector,Public Sector
+35,School Modernisation Fibre,6,Smart City & Public Sector,Public Sector
+36,NHS Site Fibre Upgrade,6,Smart City & Public Sector,Public Sector
+37,CCTV & IoT Fibre Backbone,6,Smart City & Public Sector,Public Sector
+38,Smart Poles & Street Works Fibre,6,Smart City & Public Sector,Public Sector
+39,Public WiFi Backhaul,6,Smart City & Public Sector,Public Sector
+40,Transport Hub Fibre,6,Smart City & Public Sector,Public Sector
+41,Survey & Design Services,7,Professional Services,Enterprise
+42,Wayleave Management,7,Professional Services,Enterprise
+43,Civil Build Project Management,7,Professional Services,Enterprise
+44,Service Delivery Management,7,Professional Services,Enterprise
+45,Migration & Cutover Support,7,Professional Services,Enterprise
+46,Field Engineering Dispatch,7,Professional Services,Enterprise
+47,Incident Response Retainer,7,Professional Services,Enterprise
+48,Managed Router Service,8,Network Add-Ons,All
+49,DDoS Protection,8,Network Add-Ons,All
+50,Static IP Pack,8,Network Add-Ons,All
+51,4G/5G Failover,8,Network Add-Ons,All
+52,WiFi 6 Router Upgrade,8,Network Add-Ons,All
+53,Performance Monitoring & Insights,8,Network Add-Ons,All
+54,Partner Portal Access,9,Channel Partner Enablement,Partner
+55,Provisioning API Access,9,Channel Partner Enablement,Partner
+56,Joint Marketing Funds,9,Channel Partner Enablement,Partner
+57,Partner Training Programme,9,Channel Partner Enablement,Partner
+58,Technical Accreditation,9,Channel Partner Enablement,Partner
+59,Co-branded Installation Kits,9,Channel Partner Enablement,Partner
+60,Data Centre Connect London,10,Infrastructure Solutions,Enterprise
+61,Data Centre Connect Manchester,10,Infrastructure Solutions,Enterprise
+62,Data Centre Connect Glasgow,10,Infrastructure Solutions,Enterprise
+63,Cloud On-Ramp AWS Direct Connect,10,Infrastructure Solutions,Enterprise
+64,Cloud On-Ramp Azure ExpressRoute,10,Infrastructure Solutions,Enterprise

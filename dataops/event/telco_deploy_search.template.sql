@@ -1,5 +1,5 @@
 -- ============================================================================
--- Gamma AI Demo - Cortex Search Services (DataOps Template)
+-- CityFibre AI Demo - Cortex Search Services (DataOps Template)
 -- ============================================================================
 -- Description: Parses unstructured documents and creates Cortex Search services
 -- for semantic search over finance, HR, marketing, sales, strategy, demo, and network docs
