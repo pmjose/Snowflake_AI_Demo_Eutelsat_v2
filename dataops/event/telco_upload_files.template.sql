@@ -1,20 +1,20 @@
 -- ============================================================================
--- CityFibre AI Demo - Upload Files to Stages (DataOps Template)
+-- Eutelsat AI Demo - Upload Files to Stages (DataOps Template)
 -- ============================================================================
 -- Description: Uploads CSV data files and unstructured documents to stages
 -- Variables: {{ DATABASE_NAME }}, {{ WAREHOUSE_NAME }}, {{ SCHEMA_NAME }}
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }};
 
 -- ============================================================================
 -- Step 1: Upload CSV Data Files to DATA_STAGE/demo_data/
 -- ============================================================================
 
--- Upload all CityFibre demo CSV data files (dimensions, facts, salesforce tables)
+-- Upload all Eutelsat demo CSV data files (dimensions, facts, salesforce tables)
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/account_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/campaign_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/channel_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
@@ -28,10 +28,10 @@ PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/location_dim.c
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/marketing_campaign_fact.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/product_category_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/product_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/cityfibre_kpi.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/region_rfs_progress.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/eutelsat_kpi.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/region_coverage.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/arpu_segment.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/install_lead_time.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/activation_lead_time.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/region_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/sales_fact.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/sales_rep_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
@@ -41,11 +41,11 @@ PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/sf_opportuniti
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/demo_data/vendor_dim.csv' @DATA_STAGE/demo_data/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 
 -- ============================================================================
--- Step 2: Upload CityFibre Unstructured Documents to DATA_STAGE/unstructured_docs/
--- (Only CityFibre-branded docs are uploaded)
+-- Step 2: Upload Eutelsat Unstructured Documents to DATA_STAGE/unstructured_docs/
+-- (Only Eutelsat-branded docs are uploaded)
 -- ============================================================================
 
--- Upload CityFibre finance/strategy/network/sales/marketing/HR docs (markdown)
+-- Upload Eutelsat finance/strategy/network/sales/marketing/HR docs (markdown)
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/finance/*.md' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/strategy/*.md' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/network/*.md' @DATA_STAGE/unstructured_docs/network/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
@@ -54,9 +54,17 @@ PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/market
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/hr/*.md' @DATA_STAGE/unstructured_docs/hr/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/demo/*.md' @DATA_STAGE/unstructured_docs/demo/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 
--- Upload official CityFibre reports (PDF)
-PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/CFIH-Group-2024-Accounts.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/CityFibre-Mid-year-update.pdf' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+-- Finance & investor materials
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Investors_ECOM-Consolidated-accounts-FY25_EN_101025.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Investor_Amendment-URD-2024-25_EN_251125.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Investors_PR-FY 2024_25-EN_050825_0.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Investors_Presentation-FY2024-25_EN_050825.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Investors_Presentation-FY2024-25_EN_050825 (1).pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Investors_Q1-2025-26-Presentation_EN-211025.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+
+-- Strategy/ESG and governance
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/DOC_Group_URD_Eutelsat-Sustainability-Statement-2024-25_EN_301025.pdf' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/Doc_Investors_EC-BoD Internal Rules_EN_211125.pdf' @DATA_STAGE/unstructured_docs/strategy/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
 
 -- ============================================================================
 -- Step 3: Refresh Stage Metadata (for Directory Tables)
@@ -99,5 +107,5 @@ ORDER BY folder;
 -- ============================================================================
 
 SELECT 'File upload complete!' AS status,
-       '{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' AS database_name,
+       '{{ env.EVENT_DATABASE | default("EUTELSAT_AI_DEMO") }}' AS database_name,
        CURRENT_TIMESTAMP() AS uploaded_at;

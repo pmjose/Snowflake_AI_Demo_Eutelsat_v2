@@ -1,21 +1,21 @@
-# CityFibre Operations Demo Script (Network & Delivery)
+# Eutelsat Operations Demo Script (Network & Service Delivery)
 
 ## Goal
-Show how the agent answers network reliability, capacity, and delivery questions.
+Show how the agent answers multi-orbit performance, capacity planning, and service delivery questions across GEO + LEO.
 
 ## Prompts to try
-- “Show uptime and latency for the last 30 days by region; flag hotspots.”
-- “List top 10 areas by install lead-time and the blockers (wayleaves/civils).”
-- “Where do we need additional backhaul capacity for small cells/Open RAN?”
-- “Give me RFS velocity vs plan and forecast to 8M premises.”
-- “Summarise smart city/public sector connections in the past quarter.”
+- “Show availability, latency, and jitter by service type (Broadcast, Aviation IFC, Maritime, Enterprise backhaul) for the last 30 days; flag hotspots.”
+- “Where do we need additional gateways or spectrum optimisation to support LEO load growth?”
+- “List top maritime or aviation routes with highest utilisation and any congestion alerts.”
+- “Summarize SLA performance for government and enterprise customers, including any recent incidents.”
+- “What ESG controls and debris mitigation practices are documented in the Sustainability Statement?”
+- “How many active GEO and LEO satellites are in service and which regions/beams are most utilised?”
 
 ## Narrative
-1) **Uptime/Latency**: Request trends; expect regional breakdown and hotspot notes.
-2) **Install Lead Times**: Ask for median lead time by product (FTTP, DIA/Ethernet) and by region; discuss civils/permits.
-3) **Capacity & Backhaul**: Ask about small cell/Open RAN backhaul capacity and where resilience upgrades are needed.
-4) **RFS Velocity**: Ask for RFS vs plan (demo KPI table) and estimated date to reach 8M.
-5) **Smart City/Public Sector**: Ask for recent CCTV/IoT/transport hub fibre turn-ups and any SLA/NPS notes.
+1) **Availability & Latency**: Request trends for GEO vs LEO and by service category; expect hotspot callouts and mitigation steps.
+2) **Capacity & Planning**: Ask about gateway load, beam utilisation, and where to expand throughput for mobility/backhaul.
+3) **Service Delivery**: Ask for install/activation cycle times for new IFC, maritime, or backhaul deployments and blockers (spectrum, regulatory, ground infra).
+4) **Security & Government**: Ask for resilience posture for defence/secure links and recent drills or failovers.
+5) **Sustainability**: Pull highlights from ESG content (responsible space, digital inclusion, earth & space environment).
 
-_Demo-only script using staged CityFibre data and documents._
-
+_Demo-only script using staged Eutelsat data and documents._ 

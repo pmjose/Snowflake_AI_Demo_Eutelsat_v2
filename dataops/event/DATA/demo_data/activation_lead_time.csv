@@ -1,0 +1,8 @@
+product_category,avg_activation_days,p90_activation_days,notes
+Broadcast & Video,18,30,Event booking and uplink slot coordination
+Aviation Connectivity,25,40,Aircraft kit scheduling and cert dependencies
+Maritime Connectivity,28,45,Port access and antenna fitment
+Enterprise & Community Broadband,20,35,Site readiness and power
+Government & Defence,30,50,Security approvals and site access
+Telecom Backhaul & Transmission,22,38,Backhaul path and spectrum coordination
+

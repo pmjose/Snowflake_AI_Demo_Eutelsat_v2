@@ -1,29 +1,25 @@
-# CityFibre Financial Snapshot (Demo, 2025)
+# Eutelsat Financial Snapshot (Demo, 2025)
 
 ## Capital & Funding
-- July 2025: £2.3bn financing secured (Mid-year Update 2025) to accelerate build.
-- Mix: £500m new equity (Goldman Sachs Alternatives, Antin, Mubadala, Interogo) plus £960m expanded debt; balance from existing facilities.
-- Use of funds: expand footprint toward 8M premises, accelerate RFS, bolster resilience/backhaul, partner enablement.
+- Nov 2025: €828m reserved capital increase completed; second round rights issue scheduled 25/11/25–09/12/25 (site).
+- Funding supports multi-orbit growth (GEO + OneWeb LEO), mobility/backhaul expansion, and balance sheet strength (see consolidated accounts FY25 and URD amendment).
 
 ## Revenue & Segments (illustrative for demo)
-- Segments: Homes (wholesale FTTP), Business (DIA/Ethernet), Public Sector & Smart City, Mobile/5G backhaul, Wholesale ISP partners.
-- Partner ISPs (illustrative): Vodafone, Sky, TalkTalk, Zen, toob, Cuckoo.
-- Monetisation drivers: RFS growth → take-up, higher ARPA from business/ethernet, dark fibre/backhaul, cloud on-ramps.
+- Segments: Broadcast & Video (video neighbourhoods, managed platforms, Sat.TV), Aviation & Maritime connectivity, Enterprise/Community WiFi, Government/Defence, Telecom backhaul & transmission.
+- Monetisation drivers: long-term broadcast contracts, mobility bandwidth/managed services, backhaul capacity, and managed platform value-add.
 
-## Key Operating Metrics (as of June 2025, per Mid-year Update)
-- Premises ready for service (RFS): ~4.6M; target 8M.
-- Consumer customers connected: ~620k; +102k net adds in H1 2025.
-- Speed tiers: up to 5.5 Gbps; up to 95× faster than FTTC (website).
-- Reliability: full fibre, higher uptime vs FTTC; built-in monitoring.
+## Key Operating Metrics (illustrative anchors)
+- Scale: nearly 7,000 TV channels (~1,400 HD) and 1,100 radio stations to 274M homes; 40+ years delivering for customers (site/Wikipedia).
+- Network: 35 GEO satellites plus ~600 LEO in OneWeb; GEO for coverage and QoS; LEO for low-latency mobility/backhaul; focus on availability, latency, jitter, and capacity utilisation.
+- Growth levers: mobility/enterprise uptake, cross-selling managed platforms, upsell to higher bandwidth tiers, and expanded LEO footprint.
 
 ## Cost & Investment Themes (demo assumptions)
-- Major cost lines: civil build, backhaul/dense metro rings, electronics, CPE, service delivery.
-- Efficiency levers: build density, reuse of ducts, partner-led installs, proactive assurance.
-- Cash uses: build capex, resilience/dual routes, partner integrations (APIs/OSS), smart city backhaul.
+- Major cost lines: fleet capex/leases, gateway expansion, spectrum/ground infrastructure, customer equipment for mobility/backhaul, platform operations.
+- Efficiency levers: beam/gateway optimisation, multi-orbit traffic steering, platform automation, disciplined capex phasing.
+- Cash uses: satellite/fleet investments, LEO integration, ESG initiatives (responsible space, digital inclusion), ground infrastructure refresh.
 
 ## Compliance & ESG (summary)
-- Ofcom obligations for fibre access and fair treatment of ISPs.
-- ESG focus: digital inclusion, local build jobs, lower energy per Mbps vs copper.
+- Commitments documented in Sustainability Statement: responsible space, digital inclusion, and earth/space environment.
+- Security and service assurance for government/defence customers; compliance with relevant spectrum/licensing regimes.
 
-_Demo-only content derived from provided reports and public site; not audited financials._
-
+_Demo-only content derived from provided Eutelsat reports (URD amendment, consolidated accounts, investor presentations, sustainability statement) and public site; not audited financials._ 

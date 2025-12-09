@@ -1,14 +1,14 @@
 -- ============================================================================
--- CityFibre AI Demo - Data Foundation (DataOps Template)
+-- Eutelsat AI Demo - Data Foundation (DataOps Template)
 -- ============================================================================
--- Description: Creates tables and loads CityFibre UK full fibre infrastructure and commercial data
+-- Description: Creates tables and loads Eutelsat multi-orbit (GEO + LEO) service, commercial, and operational data
 -- Variables: {{ DATABASE_NAME }}, {{ SCHEMA_NAME }}, {{ DATA_STAGE }}
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }};
 
 -- ============================================================================
 -- Step 1: Create File Format for CSV Files
@@ -37,7 +37,7 @@ CREATE OR REPLACE TABLE product_category_dim (
     category_key INT PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL,
     vertical VARCHAR(50) NOT NULL
-) COMMENT = 'Product categories for CityFibre full fibre services';
+) COMMENT = 'Product categories for Eutelsat services (broadcast/video, mobility, enterprise/backhaul, government/defence, telecom backhaul)';
 
 -- Product Dimension
 CREATE OR REPLACE TABLE product_dim (
@@ -46,7 +46,7 @@ CREATE OR REPLACE TABLE product_dim (
     category_key INT NOT NULL,
     category_name VARCHAR(100),
     vertical VARCHAR(50)
-) COMMENT = 'CityFibre services: full fibre access, ethernet, backhaul, wholesale, smart city';
+) COMMENT = 'Eutelsat services: video distribution/managed platforms, aviation/maritime connectivity, enterprise/backhaul, government/defence, telecom backhaul';
 
 -- Vendor Dimension
 CREATE OR REPLACE TABLE vendor_dim (
@@ -57,7 +57,7 @@ CREATE OR REPLACE TABLE vendor_dim (
     city VARCHAR(100),
     state VARCHAR(10),
     zip VARCHAR(20)
-) COMMENT = 'CityFibre suppliers and partners: construction, network equipment, cloud';
+) COMMENT = 'Suppliers and partners: satellite/ground segment, terminals, network equipment, cloud, integrators';
 
 -- Customer Dimension
 CREATE OR REPLACE TABLE customer_dim (
@@ -69,7 +69,7 @@ CREATE OR REPLACE TABLE customer_dim (
     city VARCHAR(100),
     state VARCHAR(10),
     zip VARCHAR(20)
-) COMMENT = 'CityFibre UK customers across residential, business, public sector, and partner verticals';
+) COMMENT = 'Eutelsat customers across broadcast/video, aviation, maritime, enterprise/backhaul, government/defence, telecom backhaul';
 
 -- Account Dimension (Finance)
 CREATE OR REPLACE TABLE account_dim (
@@ -82,33 +82,33 @@ CREATE OR REPLACE TABLE account_dim (
 CREATE OR REPLACE TABLE department_dim (
     department_key INT PRIMARY KEY,
     department_name VARCHAR(100) NOT NULL
-) COMMENT = 'CityFibre organizational departments';
+) COMMENT = 'Eutelsat organizational departments';
 
 -- Region Dimension
 CREATE OR REPLACE TABLE region_dim (
     region_key INT PRIMARY KEY,
     region_name VARCHAR(100) NOT NULL
-) COMMENT = 'UK regions: London, South East, Scotland, Wales, North West, Yorkshire';
+) COMMENT = 'Operating regions/coverage footprints';
 
 -- Sales Rep Dimension
 CREATE OR REPLACE TABLE sales_rep_dim (
     sales_rep_key INT PRIMARY KEY,
     rep_name VARCHAR(200) NOT NULL,
     hire_date DATE
-) COMMENT = 'CityFibre sales representatives and channel account managers';
+) COMMENT = 'Eutelsat sales representatives and channel account managers';
 
 -- Campaign Dimension (Marketing)
 CREATE OR REPLACE TABLE campaign_dim (
     campaign_key INT PRIMARY KEY,
     campaign_name VARCHAR(300) NOT NULL,
     objective VARCHAR(100)
-) COMMENT = 'Marketing campaigns: Horizon Launch, Teams Phone Migration, Partner Recruitment';
+) COMMENT = 'Marketing campaigns across broadcast, mobility, backhaul, government/ESG';
 
 -- Channel Dimension (Marketing)
 CREATE OR REPLACE TABLE channel_dim (
     channel_key INT PRIMARY KEY,
     channel_name VARCHAR(100) NOT NULL
-) COMMENT = 'Marketing channels: Channel Partners, Direct Enterprise, Webinars, LinkedIn, Events';
+) COMMENT = 'Marketing channels: partners, direct enterprise, webinars, digital, events';
 
 -- Employee Dimension (HR)
 CREATE OR REPLACE TABLE employee_dim (
@@ -116,42 +116,42 @@ CREATE OR REPLACE TABLE employee_dim (
     employee_name VARCHAR(200) NOT NULL,
     gender VARCHAR(1),
     hire_date DATE
-) COMMENT = 'CityFibre employees for HR analysis';
+) COMMENT = 'Eutelsat employees for HR analysis';
 
 -- Job Dimension (HR)
 CREATE OR REPLACE TABLE job_dim (
     job_key INT PRIMARY KEY,
     job_title VARCHAR(100) NOT NULL,
     job_level INT
-) COMMENT = 'Job titles and levels within CityFibre';
+) COMMENT = 'Job titles and levels within Eutelsat';
 
 -- Location Dimension (HR)
 CREATE OR REPLACE TABLE location_dim (
     location_key INT PRIMARY KEY,
     location_name VARCHAR(200) NOT NULL
-) COMMENT = 'CityFibre offices, network hubs, and data centres';
+) COMMENT = 'Eutelsat offices, gateways, network hubs, and data centres';
 
 -- ============================================================================
 -- Step 3: Create Fact Tables
 -- ============================================================================
 
--- CityFibre KPI Reference (demo)
-CREATE OR REPLACE TABLE cityfibre_kpi (
+-- Eutelsat KPI Reference (demo)
+CREATE OR REPLACE TABLE eutelsat_kpi (
     metric VARCHAR(200) PRIMARY KEY,
     value NUMBER(18,2),
     as_of_note VARCHAR(200),
     category VARCHAR(50)
-) COMMENT = 'Reference KPIs for CityFibre demo (RFS, take-up, financing, speed)';
+) COMMENT = 'Reference KPIs for Eutelsat demo (fleet, availability, reach, financing)';
 
--- Region RFS and take-up (demo)
-CREATE OR REPLACE TABLE region_rfs_progress (
+-- Region coverage and utilisation (demo)
+CREATE OR REPLACE TABLE region_coverage (
     region_key INT PRIMARY KEY,
     region_name VARCHAR(200),
-    premises_rfs NUMBER(18,0),
-    takeup_pct NUMBER(6,3),
-    avg_install_days INT,
+    coverage_sites NUMBER(18,0),
+    utilization_pct NUMBER(6,3),
+    avg_activation_days INT,
     data_as_of VARCHAR(50)
-) COMMENT = 'Region-level ready-for-service counts, take-up %, and install cycle time';
+) COMMENT = 'Region-level availability/utilisation, take-up %, and activation cycle time';
 
 -- Segment ARPA/ARPU (demo)
 CREATE OR REPLACE TABLE arpu_segment (
@@ -159,15 +159,15 @@ CREATE OR REPLACE TABLE arpu_segment (
     arpa_gbp NUMBER(10,2),
     arpu_gbp NUMBER(10,2),
     as_of_note VARCHAR(100)
-) COMMENT = 'Illustrative ARPA/ARPU by segment for CityFibre demo';
+) COMMENT = 'Illustrative ARPA/ARPU by segment for Eutelsat demo';
 
--- Install lead time by product category (demo)
-CREATE OR REPLACE TABLE install_lead_time (
+-- Install/activation lead time by product category (demo)
+CREATE OR REPLACE TABLE activation_lead_time (
     product_category VARCHAR(150) PRIMARY KEY,
-    avg_install_days INT,
-    p90_install_days INT,
+    avg_activation_days INT,
+    p90_activation_days INT,
     notes VARCHAR(200)
-) COMMENT = 'Illustrative install lead times by product category';
+) COMMENT = 'Illustrative activation lead times by product category (e.g., mobility kits vs fixed gateways)';
 
 -- Sales Fact Table
 CREATE OR REPLACE TABLE sales_fact (
@@ -179,8 +179,9 @@ CREATE OR REPLACE TABLE sales_fact (
     region_key INT NOT NULL,
     vendor_key INT NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(3) DEFAULT 'EUR',
     units INT NOT NULL
-) COMMENT = 'B2B sales transactions for UCaaS, CCaaS, Voice, Connectivity products';
+) COMMENT = 'B2B sales transactions for satellite services and capacity';
 
 -- Finance Transactions Fact Table
 CREATE OR REPLACE TABLE finance_transactions (
@@ -192,6 +193,7 @@ CREATE OR REPLACE TABLE finance_transactions (
     product_key INT NOT NULL,
     customer_key INT NOT NULL,
     amount DECIMAL(12,2) NOT NULL,
+    currency VARCHAR(3) DEFAULT 'EUR',
     approval_status VARCHAR(20) DEFAULT 'Pending',
     procurement_method VARCHAR(50),
     approver_id INT,
@@ -212,7 +214,7 @@ CREATE OR REPLACE TABLE marketing_campaign_fact (
     spend DECIMAL(10,2) NOT NULL,
     leads_generated INT NOT NULL,
     impressions INT NOT NULL
-) COMMENT = 'Marketing campaign performance metrics';
+) COMMENT = 'Marketing campaign performance metrics (EUR for spend)';
 
 -- HR Employee Fact Table
 CREATE OR REPLACE TABLE hr_employee_fact (
@@ -361,15 +363,15 @@ FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/location_dim.
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
--- Load CityFibre KPI Reference
-COPY INTO cityfibre_kpi
-FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/cityfibre_kpi.csv
+-- Load Eutelsat KPI Reference
+COPY INTO eutelsat_kpi
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/eutelsat_kpi.csv
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
--- Load Region RFS/Take-up
-COPY INTO region_rfs_progress
-FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/region_rfs_progress.csv
+-- Load Region Coverage/Utilisation
+COPY INTO region_coverage
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/region_coverage.csv
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
@@ -379,15 +381,9 @@ FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/arpu_segment.
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
--- Load Install Lead Times
-COPY INTO install_lead_time
-FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/install_lead_time.csv
-FILE_FORMAT = CSV_FORMAT
-ON_ERROR = 'CONTINUE';
-
--- Load CityFibre KPI Reference
-COPY INTO cityfibre_kpi
-FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/cityfibre_kpi.csv
+-- Load Activation Lead Times
+COPY INTO activation_lead_time
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/activation_lead_time.csv
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
@@ -497,8 +493,8 @@ UNION ALL
 SELECT '', 'sf_contacts', COUNT(*) FROM sf_contacts;
 
 -- Show all tables
-SHOW TABLES IN SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
+SHOW TABLES IN SCHEMA {{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }};
 
-SELECT 'CityFibre AI Demo data foundation complete!' AS status,
-       '{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' AS database_name,
+SELECT 'Eutelsat AI Demo data foundation complete!' AS status,
+       '{{ env.EVENT_DATABASE | default("EUTELSAT_AI_DEMO") }}' AS database_name,
        CURRENT_TIMESTAMP() AS loaded_at;

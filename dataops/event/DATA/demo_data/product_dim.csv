@@ -1,65 +1,65 @@
 product_key,product_name,category_key,category_name,vertical
-1,CityFibre Full Fibre 500,1,Full Fibre Broadband,Homes
-2,CityFibre Full Fibre 1G,1,Full Fibre Broadband,Homes
-3,CityFibre Full Fibre 2G,1,Full Fibre Broadband,Homes
-4,Premium Full Fibre 5.5G,1,Full Fibre Broadband,Homes
-5,Smart WiFi Mesh for Homes,1,Full Fibre Broadband,Homes
-6,Home Voice over Fibre,1,Full Fibre Broadband,Homes
-7,Symmetric Home Pro 1G,1,Full Fibre Broadband,SMB
-8,Home Security Backhaul,1,Full Fibre Broadband,Homes
-9,Business Fibre DIA 1G,2,Business Internet & Ethernet,Enterprise
-10,Business Fibre DIA 10G,2,Business Internet & Ethernet,Enterprise
-11,Resilient Ethernet Pair,2,Business Internet & Ethernet,Enterprise
-12,National Ethernet Aggregation,2,Business Internet & Ethernet,Enterprise
-13,Cloud Connect for AWS,2,Business Internet & Ethernet,Enterprise
-14,Cloud Connect for Azure,2,Business Internet & Ethernet,Enterprise
-15,Cloud Connect for Google Cloud,2,Business Internet & Ethernet,Enterprise
-16,Metro Dark Fibre Pair,3,Dark Fibre & Backbone,Enterprise
-17,Long Haul Dark Fibre,3,Dark Fibre & Backbone,Enterprise
-18,Data Centre Cross Connect,3,Dark Fibre & Backbone,Enterprise
-19,Metro Ring Access,3,Dark Fibre & Backbone,Enterprise
-20,Resilient Backbone Spur,3,Dark Fibre & Backbone,Enterprise
-21,Small Cell Backhaul,4,Mobile & 5G Backhaul,Mobile
-22,Macro Tower Backhaul,4,Mobile & 5G Backhaul,Mobile
-23,Open RAN Fronthaul,4,Mobile & 5G Backhaul,Mobile
-24,Edge Data Centre Access,4,Mobile & 5G Backhaul,Mobile
-25,Emergency Services Network Backhaul,4,Mobile & 5G Backhaul,Public Sector
-26,Vodafone Wholesale FTTP,5,Wholesale Partner Access,Partner
-27,Sky Wholesale FTTP,5,Wholesale Partner Access,Partner
-28,TalkTalk Wholesale FTTP,5,Wholesale Partner Access,Partner
-29,Zen Wholesale FTTP,5,Wholesale Partner Access,Partner
-30,Cuckoo Wholesale FTTP,5,Wholesale Partner Access,Partner
-31,toob Wholesale FTTP,5,Wholesale Partner Access,Partner
-32,Business Wholesale Broadband Bundle,5,Wholesale Partner Access,Partner
-33,ISP Onboarding Accelerator,5,Wholesale Partner Access,Partner
-34,Local Authority Campus Fibre,6,Smart City & Public Sector,Public Sector
-35,School Modernisation Fibre,6,Smart City & Public Sector,Public Sector
-36,NHS Site Fibre Upgrade,6,Smart City & Public Sector,Public Sector
-37,CCTV & IoT Fibre Backbone,6,Smart City & Public Sector,Public Sector
-38,Smart Poles & Street Works Fibre,6,Smart City & Public Sector,Public Sector
-39,Public WiFi Backhaul,6,Smart City & Public Sector,Public Sector
-40,Transport Hub Fibre,6,Smart City & Public Sector,Public Sector
-41,Survey & Design Services,7,Professional Services,Enterprise
-42,Wayleave Management,7,Professional Services,Enterprise
-43,Civil Build Project Management,7,Professional Services,Enterprise
-44,Service Delivery Management,7,Professional Services,Enterprise
-45,Migration & Cutover Support,7,Professional Services,Enterprise
-46,Field Engineering Dispatch,7,Professional Services,Enterprise
-47,Incident Response Retainer,7,Professional Services,Enterprise
-48,Managed Router Service,8,Network Add-Ons,All
-49,DDoS Protection,8,Network Add-Ons,All
-50,Static IP Pack,8,Network Add-Ons,All
-51,4G/5G Failover,8,Network Add-Ons,All
-52,WiFi 6 Router Upgrade,8,Network Add-Ons,All
-53,Performance Monitoring & Insights,8,Network Add-Ons,All
-54,Partner Portal Access,9,Channel Partner Enablement,Partner
-55,Provisioning API Access,9,Channel Partner Enablement,Partner
-56,Joint Marketing Funds,9,Channel Partner Enablement,Partner
-57,Partner Training Programme,9,Channel Partner Enablement,Partner
-58,Technical Accreditation,9,Channel Partner Enablement,Partner
-59,Co-branded Installation Kits,9,Channel Partner Enablement,Partner
-60,Data Centre Connect London,10,Infrastructure Solutions,Enterprise
-61,Data Centre Connect Manchester,10,Infrastructure Solutions,Enterprise
-62,Data Centre Connect Glasgow,10,Infrastructure Solutions,Enterprise
-63,Cloud On-Ramp AWS Direct Connect,10,Infrastructure Solutions,Enterprise
-64,Cloud On-Ramp Azure ExpressRoute,10,Infrastructure Solutions,Enterprise
+1,Broadcast Video Neighbourhood Tier 1,1,Broadcast & Video,Broadcast
+2,Broadcast Video Neighbourhood Tier 2,1,Broadcast & Video,Broadcast
+3,UHD Contribution Link,1,Broadcast & Video,Broadcast
+4,Occasional Use Event Package,1,Broadcast & Video,Broadcast
+5,Sat.TV EPG Listing,1,Broadcast & Video,Broadcast
+6,Video Platform CDN Assist,1,Broadcast & Video,Broadcast
+7,Regional Bouquet Packaging,1,Broadcast & Video,Broadcast
+8,Edge Play-out POP,1,Broadcast & Video,Broadcast
+9,Aviation IFC 50 Mbps,2,Aviation Connectivity,Mobility
+10,Aviation IFC 100 Mbps,2,Aviation Connectivity,Mobility
+11,Aviation IFC 200 Mbps,2,Aviation Connectivity,Mobility
+12,Aviation Crew & IoT Link,2,Aviation Connectivity,Mobility
+13,Aviation Ops Data Feed,2,Aviation Connectivity,Mobility
+14,Aviation Safety Voice Channel,2,Aviation Connectivity,Mobility
+15,Aviation Premium SLA,2,Aviation Connectivity,Mobility
+16,Maritime VSAT 50 Mbps,3,Maritime Connectivity,Mobility
+17,Maritime VSAT 100 Mbps,3,Maritime Connectivity,Mobility
+18,Maritime Premium 200 Mbps,3,Maritime Connectivity,Mobility
+19,Offshore IoT/SCADA Backhaul,3,Maritime Connectivity,Mobility
+20,Cruise Guest WiFi Boost,3,Maritime Connectivity,Mobility
+21,Community Broadband Hub Kit,4,Enterprise & Community Broadband,Enterprise
+22,Enterprise DIA 100 Mbps Satellite,4,Enterprise & Community Broadband,Enterprise
+23,Enterprise DIA 1 Gbps Hybrid,4,Enterprise & Community Broadband,Enterprise
+24,SD-WAN with Satellite Path,4,Enterprise & Community Broadband,Enterprise
+25,Emergency Restore Kit ("Backhaul on Wheels"),4,Enterprise & Community Broadband,Enterprise
+26,Secure Gov Link Bronze,5,Government & Defence,Government
+27,Secure Gov Link Silver,5,Government & Defence,Government
+28,Secure Gov Link Gold,5,Government & Defence,Government
+29,Disaster Recovery Surge Kit,5,Government & Defence,Government
+30,Humanitarian Connectivity Kit,5,Government & Defence,Government
+31,Border & Customs Site Link,5,Government & Defence,Government
+32,Defence ISR Backhaul,5,Government & Defence,Government
+33,Encrypted Mobility Kit,5,Government & Defence,Government
+34,Rural Cell Backhaul 1 Gbps,6,Telecom Backhaul & Transmission,Telecom
+35,Rural Cell Backhaul 2 Gbps,6,Telecom Backhaul & Transmission,Telecom
+36,Fronthaul / ORAN Support Pack,6,Telecom Backhaul & Transmission,Telecom
+37,Edge DC Interconnect,6,Telecom Backhaul & Transmission,Telecom
+38,Broadcast Distribution Uplink,6,Telecom Backhaul & Transmission,Telecom
+39,Spectrum Refarming Support,6,Telecom Backhaul & Transmission,Telecom
+40,POP to Core Transport,6,Telecom Backhaul & Transmission,Telecom
+41,Managed Video Platform,7,Managed Platforms & Sat.TV,Broadcast
+42,Sat.TV Metadata Hosting,7,Managed Platforms & Sat.TV,Broadcast
+43,Ad Insertion / FAST Enablement,7,Managed Platforms & Sat.TV,Broadcast
+44,Content Origination & Encoding,7,Managed Platforms & Sat.TV,Broadcast
+45,Channel Monitoring & Compliance,7,Managed Platforms & Sat.TV,Broadcast
+46,Event Booking Portal,7,Managed Platforms & Sat.TV,Broadcast
+47,Media Analytics Dashboard,7,Managed Platforms & Sat.TV,Broadcast
+48,Gateway Colocation Slot,8,Ground & Gateway Services,Infrastructure
+49,Teleport Uptime SLA,8,Ground & Gateway Services,Infrastructure
+50,RF Monitoring & Spectrum Analytics,8,Ground & Gateway Services,Infrastructure
+51,Antenna Maintenance Pack,8,Ground & Gateway Services,Infrastructure
+52,Teleport Remote Hands,8,Ground & Gateway Services,Infrastructure
+53,Gateway Build & Integration,8,Ground & Gateway Services,Infrastructure
+54,Partner Portal Access,9,Partner Enablement & APIs,Partner
+55,Provisioning & Billing API,9,Partner Enablement & APIs,Partner
+56,Joint Marketing Funds,9,Partner Enablement & APIs,Partner
+57,Partner Training Programme,9,Partner Enablement & APIs,Partner
+58,Technical Accreditation,9,Partner Enablement & APIs,Partner
+59,Co-branded Installation Kits,9,Partner Enablement & APIs,Partner
+60,Service Assurance Essentials,10,Analytics & Assurance,All
+61,Service Assurance Plus,10,Analytics & Assurance,All
+62,Traffic Insights & QoS Reports,10,Analytics & Assurance,All
+63,Capacity Planning Advisor,10,Analytics & Assurance,All
+64,Incident Response Readiness,10,Analytics & Assurance,All

@@ -1,5 +1,5 @@
 -- ============================================================================
--- CityFibre AI Demo - Semantic Views for Cortex Analyst (DataOps Template)
+-- Eutelsat AI Demo - Semantic Views for Cortex Analyst (DataOps Template)
 -- ============================================================================
 -- Description: Creates business unit-specific semantic views for natural language queries
 -- Based on: https://docs.snowflake.com/en/user-guide/views-semantic/sql
@@ -7,9 +7,9 @@
 
 -- Use ACCOUNTADMIN to own semantic views (allows editing in Snowsight)
 USE ROLE ACCOUNTADMIN;
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }};
 
 -- ============================================================================
 -- FINANCE SEMANTIC VIEW
@@ -84,7 +84,8 @@ CREATE OR REPLACE SEMANTIC VIEW SALES_SEMANTIC_VIEW
     SALES_TO_VENDORS as SALES(VENDOR_KEY) references VENDORS(VENDOR_KEY)
   )
   facts (
-    SALES.SALE_AMOUNT as amount comment='Sale amount in pounds',
+    SALES.SALE_AMOUNT as amount comment='Sale amount in euros',
+    SALES.CURRENCY as currency comment='Currency code (EUR default)',
     SALES.SALE_RECORD as 1 comment='Count of sales transactions',
     SALES.UNITS_SOLD as units comment='Number of units sold'
   )
@@ -121,8 +122,8 @@ CREATE OR REPLACE SEMANTIC VIEW SALES_SEMANTIC_VIEW
     SALES.TOTAL_REVENUE as SUM(sales.amount) comment='Total sales revenue',
     SALES.TOTAL_UNITS as SUM(sales.units) comment='Total units sold'
   )
-  comment='Semantic view for CityFibre full fibre sales analysis'
-  with extension (CA='{"tables":[{"name":"CUSTOMERS","dimensions":[{"name":"CUSTOMER_KEY"},{"name":"CUSTOMER_NAME","sample_values":["Harrison Martin Ltd","Lee Turner Solutions","Williams Hill UK"]},{"name":"INDUSTRY","sample_values":["Healthcare","Manufacturing","Financial Services","Technology","Legal Services","Education","Hospitality"]}]},{"name":"PRODUCTS","dimensions":[{"name":"CATEGORY_KEY","unique":false},{"name":"PRODUCT_KEY"},{"name":"PRODUCT_NAME","sample_values":["CityFibre Full Fibre 1G","Business Fibre DIA 10G","Metro Dark Fibre Pair","Small Cell Backhaul","Data Centre Connect London"]}]},{"name":"PRODUCT_CATEGORY_DIM","dimensions":[{"name":"CATEGORY_KEY","sample_values":["1","2","3","4","5","6","7","8","9","10"]},{"name":"CATEGORY_NAME","sample_values":["Full Fibre Broadband","Business Internet & Ethernet","Dark Fibre & Backbone","Mobile & 5G Backhaul","Wholesale Partner Access","Smart City & Public Sector","Professional Services","Network Add-Ons","Channel Partner Enablement","Infrastructure Solutions"]},{"name":"VERTICAL","sample_values":["Homes","Enterprise","Public Sector","Partner","Mobile","All"]}]},{"name":"REGIONS","dimensions":[{"name":"REGION_KEY"},{"name":"REGION_NAME","sample_values":["London","South East","Scotland","Wales","North West","Yorkshire"]}]},{"name":"SALES","dimensions":[{"name":"CUSTOMER_KEY"},{"name":"PRODUCT_KEY"},{"name":"REGION_KEY"},{"name":"SALES_REP_KEY"},{"name":"SALE_DATE","sample_values":["2024-01-01","2024-06-15","2024-12-01"]},{"name":"SALE_ID"},{"name":"SALE_MONTH"},{"name":"SALE_YEAR"},{"name":"VENDOR_KEY"}],"facts":[{"name":"SALE_AMOUNT"},{"name":"SALE_RECORD"},{"name":"UNITS_SOLD"}],"metrics":[{"name":"AVERAGE_DEAL_SIZE"},{"name":"AVERAGE_UNITS_PER_SALE"},{"name":"TOTAL_DEALS"},{"name":"TOTAL_REVENUE"},{"name":"TOTAL_UNITS"}]},{"name":"SALES_REPS","dimensions":[{"name":"SALES_REP_KEY"},{"name":"SALES_REP_NAME","sample_values":["Daniel Jones","Luna Anderson","Charlotte Scott"]}]},{"name":"VENDORS","dimensions":[{"name":"VENDOR_KEY"},{"name":"VENDOR_NAME","sample_values":["Construction Partner A","Cisco UK","Amazon Web Services UK","BT Openreach","Virgin Media O2"]}]}],"relationships":[{"name":"PRODUCT_TO_CATEGORY"},{"name":"SALES_TO_CUSTOMERS","relationship_type":"many_to_one"},{"name":"SALES_TO_PRODUCTS","relationship_type":"many_to_one"},{"name":"SALES_TO_REGIONS","relationship_type":"many_to_one"},{"name":"SALES_TO_REPS","relationship_type":"many_to_one"},{"name":"SALES_TO_VENDORS","relationship_type":"many_to_one"}]}');
+  comment='Semantic view for Eutelsat sales analysis'
+  with extension (CA='{"tables":[{"name":"CUSTOMERS","dimensions":[{"name":"CUSTOMER_KEY"},{"name":"CUSTOMER_NAME","sample_values":["OrbitView Media 1","SkyLink Airlines 2","BlueWave Cruises 3","RuralConnect ISP 4","Nordic Defence Agency 5"]},{"name":"INDUSTRY","sample_values":["Media & Broadcast","Aviation","Maritime","Government","Telecom/MNO","Enterprise/Community"]}]},{"name":"PRODUCTS","dimensions":[{"name":"CATEGORY_KEY","unique":false},{"name":"PRODUCT_KEY"},{"name":"PRODUCT_NAME","sample_values":["Broadcast Video Neighbourhood Tier 1","Aviation IFC 100 Mbps","Maritime VSAT 100 Mbps","Community Broadband Hub Kit","Rural Cell Backhaul 2 Gbps"]}]},{"name":"PRODUCT_CATEGORY_DIM","dimensions":[{"name":"CATEGORY_KEY","sample_values":["1","2","3","4","5","6","7","8","9","10"]},{"name":"CATEGORY_NAME","sample_values":["Broadcast & Video","Aviation Connectivity","Maritime Connectivity","Enterprise & Community Broadband","Government & Defence","Telecom Backhaul & Transmission","Managed Platforms & Sat.TV","Ground & Gateway Services","Partner Enablement & APIs","Analytics & Assurance"]},{"name":"VERTICAL","sample_values":["Broadcast","Mobility","Enterprise","Government","Telecom","All"]}]},{"name":"REGIONS","dimensions":[{"name":"REGION_KEY"},{"name":"REGION_NAME","sample_values":["Europe & MENA","Sub-Saharan Africa","North America","Latin America","Asia-Pacific","Maritime Corridors","Aviation Corridors","Global Mobility"]}]},{"name":"SALES","dimensions":[{"name":"CUSTOMER_KEY"},{"name":"PRODUCT_KEY"},{"name":"REGION_KEY"},{"name":"SALES_REP_KEY"},{"name":"SALE_DATE","sample_values":["2024-10-01"]},{"name":"SALE_ID"},{"name":"SALE_MONTH"},{"name":"SALE_YEAR"},{"name":"VENDOR_KEY"},{"name":"CURRENCY","sample_values":["EUR"]}],"facts":[{"name":"SALE_AMOUNT"},{"name":"SALE_RECORD"},{"name":"UNITS_SOLD"}],"metrics":[{"name":"AVERAGE_DEAL_SIZE"},{"name":"AVERAGE_UNITS_PER_SALE"},{"name":"TOTAL_DEALS"},{"name":"TOTAL_REVENUE"},{"name":"TOTAL_UNITS"}]},{"name":"SALES_REPS","dimensions":[{"name":"SALES_REP_KEY"},{"name":"SALES_REP_NAME","sample_values":["Rep 1","Rep 2","Rep 3"]}]},{"name":"VENDORS","dimensions":[{"name":"VENDOR_KEY"},{"name":"VENDOR_NAME","sample_values":["Ground Equip Partner","Cloud Edge Partner","Teleport Operator","Satellite Hardware Vendor","Integration Partner"]}]}],"relationships":[{"name":"PRODUCT_TO_CATEGORY"},{"name":"SALES_TO_CUSTOMERS","relationship_type":"many_to_one"},{"name":"SALES_TO_PRODUCTS","relationship_type":"many_to_one"},{"name":"SALES_TO_REGIONS","relationship_type":"many_to_one"},{"name":"SALES_TO_REPS","relationship_type":"many_to_one"},{"name":"SALES_TO_VENDORS","relationship_type":"many_to_one"}]}');
 
 -- ============================================================================
 -- MARKETING SEMANTIC VIEW
@@ -153,12 +154,12 @@ CREATE OR REPLACE SEMANTIC VIEW MARKETING_SEMANTIC_VIEW
   )
   facts (
     PUBLIC CAMPAIGNS.CAMPAIGN_RECORD as 1 comment='Count of campaign activities',
-    PUBLIC CAMPAIGNS.CAMPAIGN_SPEND as spend comment='Marketing spend in pounds',
+    PUBLIC CAMPAIGNS.CAMPAIGN_SPEND as spend comment='Marketing spend in euros',
     PUBLIC CAMPAIGNS.IMPRESSIONS as IMPRESSIONS comment='Number of impressions',
     PUBLIC CAMPAIGNS.LEADS_GENERATED as LEADS_GENERATED comment='Number of leads generated',
     PUBLIC CONTACTS.CONTACT_RECORD as 1 comment='Count of contacts generated',
     PUBLIC OPPORTUNITIES.OPPORTUNITY_RECORD as 1 comment='Count of opportunities created',
-    PUBLIC OPPORTUNITIES.REVENUE as AMOUNT comment='Opportunity revenue in pounds'
+    PUBLIC OPPORTUNITIES.REVENUE as AMOUNT comment='Opportunity revenue in euros'
   )
   dimensions (
     PUBLIC ACCOUNTS.ACCOUNT_ID as ACCOUNT_ID,

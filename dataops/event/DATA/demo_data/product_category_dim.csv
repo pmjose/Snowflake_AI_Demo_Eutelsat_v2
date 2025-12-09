@@ -1,11 +1,11 @@
 category_key,category_name,vertical
-1,Full Fibre Broadband,Homes
-2,Business Internet & Ethernet,Enterprise
-3,Dark Fibre & Backbone,Enterprise
-4,Mobile & 5G Backhaul,Mobile
-5,Wholesale Partner Access,Partner
-6,Smart City & Public Sector,Public Sector
-7,Professional Services,Enterprise
-8,Network Add-Ons,All
-9,Channel Partner Enablement,Partner
-10,Infrastructure Solutions,Enterprise
+1,Broadcast & Video,Broadcast
+2,Aviation Connectivity,Mobility
+3,Maritime Connectivity,Mobility
+4,Enterprise & Community Broadband,Enterprise
+5,Government & Defence,Government
+6,Telecom Backhaul & Transmission,Telecom
+7,Managed Platforms & Sat.TV,Broadcast
+8,Ground & Gateway Services,Infrastructure
+9,Partner Enablement & APIs,Partner
+10,Analytics & Assurance,All

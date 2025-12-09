@@ -13,7 +13,7 @@ department_key,department_name
 21,Business Development
 22,Customer Success
 23,Sales Operations
-24,Channel Partners
+24,Partner Programs
 25,Sales Engineering
 26,Account Management
 27,Inside Sales
@@ -21,12 +21,21 @@ department_key,department_name
 29,Sales Support
 30,Marketing
 31,Digital Marketing
-32,Content Marketing
-33,Product Marketing
-34,Brand Marketing
-35,Event Marketing
-36,Market Research
-37,Public Relations
-38,Social Media
-39,Marketing Operations
-40,HR
+32,Product Marketing
+33,Brand & Communications
+34,Event Marketing
+35,Market Research
+36,Public Relations
+37,Analyst Relations
+38,Marketing Operations
+39,HR
+40,People Operations
+41,Network Operations (NOC)
+42,Security Operations (SOC)
+43,Fleet & Spectrum Management
+44,Gateway Engineering
+45,Service Delivery
+46,Mobility Operations (Aero/Maritime)
+47,Government Programs
+48,Platform Engineering
+49,Data & Analytics

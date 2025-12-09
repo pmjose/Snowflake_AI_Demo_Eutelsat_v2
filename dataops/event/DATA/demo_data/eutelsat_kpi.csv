@@ -1,0 +1,12 @@
+metric,value,as_of_note,category
+GEO_Satellites,35,FY25 fleet (Wikipedia),network
+LEO_Satellites,600,OneWeb constellation (Wikipedia),network
+TV_Channels,7000,Nearly 7,000 channels (site/Wikipedia),product
+HD_Channels,1400,~1,400 HD channels (Wikipedia),product
+Radio_Stations,1100,~1,100 radio stations (Wikipedia),product
+Homes_Reach,274000000,274M cable/satellite homes (Wikipedia),product
+Availability_Percent,99.9,Target multi-orbit availability,network
+Capital_Increase_EUR,828000000,Reserved capital increase Nov 2025 (site),finance
+Revenue_2022_23_EUR,1130000000,Revenue €1.13B FY22/23 (Wikipedia),finance
+Net_Income_2022_23_EUR,328000000,Net income €328M FY22/23 (Wikipedia),finance
+

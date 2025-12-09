@@ -1,22 +1,32 @@
 job_key,job_title
-800,Software Engineer
-801,HR Business Partner
-802,Data Analyst
-803,Talent Acquisition Specialist
-804,Finance Business Partner
-805,Channel Account Manager
-806,Marketing Manager
-807,Operations Manager
-808,Technical Support Engineer
-809,IT Systems Administrator
-810,Enterprise Account Executive
-811,Solutions Architect
+800,Satellite Network Engineer
+801,RF/Spectrum Engineer
+802,Gateway Operations Lead
+803,Ground Infrastructure Engineer
+804,Flight/Mobility Operations Manager
+805,Maritime Service Manager
+806,Fleet & Spectrum Analyst
+807,Service Delivery Manager
+808,NOC Operator
+809,SOC Analyst
+810,Platform Engineer
+811,Data & Analytics Engineer
 812,Customer Success Manager
 813,Partner Development Manager
-814,Product Manager
-815,DevOps Engineer
-816,Network Engineer
-817,Security Analyst
-818,Project Manager
-819,Business Development Manager
+814,Product Manager (Broadcast)
+815,Product Manager (Mobility)
+816,Product Manager (Backhaul)
+817,Solutions Architect (Satellite)
+818,Project Manager (Deployments)
+819,Business Development Manager (Mobility)
 820,Inside Sales Representative
+821,Account Executive (Broadcast)
+822,Account Executive (Government)
+823,Finance Business Partner
+824,Talent Acquisition Specialist
+825,HR Business Partner
+826,Security Architect
+827,Field Engineer (Gateway)
+828,Field Engineer (Mobility Install)
+829,Service Assurance Analyst
+830,Customer Support Specialist

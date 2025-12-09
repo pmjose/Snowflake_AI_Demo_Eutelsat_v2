@@ -1,30 +1,29 @@
-# CityFibre Network Overview (Demo)
+# Eutelsat Network Overview (Demo)
 
 ## Footprint & Coverage
-- 4.6M premises ready for service (RFS) as of June 2025; target 8M.
-- Wholesale-only FTTP; dense metro rings plus long-haul backbone interconnects.
-- Key regions: London/South East, Midlands, North West, Scotland, Wales; expanding nationally.
+- Multi-orbit network combining a high-throughput GEO fleet (35 satellites) with the OneWeb LEO constellation (~600 satellites) for pole-to-pole coverage.
+- Broadcast neighbourhoods plus mobility/enterprise beams serving land, sea, and air use cases; nearly 7,000 TV channels (~1,400 HD) and 1,100 radio stations reaching 274M homes.
+- Longstanding video reach with 6,400+ TV channels to ~1B viewers (site), alongside growing mobility/backhaul footprint.
 
 ## Performance
-- Speed tiers up to 5.5 Gbps; symmetric options for business.
-- Reliability: fibre end-to-end; proactive monitoring/telemetry; designed for higher uptime vs FTTC.
-- Typical metrics to report: uptime %, latency, jitter, packet loss, capacity utilisation.
+- GEO for ubiquitous coverage and managed QoS; LEO for low-latency, high-throughput mobility/backhaul.
+- Typical metrics to report: availability/SLA, latency bands (GEO vs LEO), jitter, packet loss, capacity utilisation by beam/gateway.
+- Proactive monitoring via NOC/SOC; multi-orbit resiliency and failover.
 
 ## Services
-- Access: FTTP for homes/SMB; DIA/Ethernet for business.
-- Backbone: metro rings, resilient pairs, long-haul dark fibre.
-- Mobile: 5G/4G backhaul, small cell/Open RAN fronthaul, edge DC access.
-- Smart City/Public Sector: CCTV/IoT backhaul, campus fibre, transport hub connectivity, public WiFi backhaul.
-- Cloud On-Ramps: AWS Direct Connect, Azure ExpressRoute, Google Interconnect (via partner PoPs).
+- Broadcast & Video: DTH/DTT distribution, contribution, managed platforms, Sat.TV EPG, fast channels.
+- Aviation & Maritime: inflight connectivity and high-speed maritime links with seamless GEO/LEO handover.
+- Enterprise & Backhaul: community WiFi, education, energy/mining, retail/banking resilience, “Backhaul on Wheels,” rural/mobile backhaul.
+- Government: secure, assured connectivity for civil/defence, disaster recovery, and humanitarian assistance.
+- Telecom: cellular backhaul and transmission for underserved regions.
 
 ## Resilience & Operations
-- Architecture: diverse routes where available, resilient pairs for DIA/Ethernet, monitored backbone capacity.
-- Incident response: NOC with proactive alerts; standard comms to ISP partners.
-- Install lead times (illustrative for demo): FTTP homes ~10–15 days via ISP; DIA/Ethernet ~45–90 days depending on civils.
+- Multi-orbit routing policies for SLA adherence; gateway diversity where available; monitored spectrum usage.
+- Incident response: NOC/SOC with proactive alerts and incident communications to partners.
+- Activation lead times vary by service (mobility kits vs fixed gateways); track blockers such as licensing, ground site readiness, or equipment logistics.
 
 ## Partners & Interconnect
-- Wholesale ISP partners: Vodafone, Sky, TalkTalk, Zen, toob, Cuckoo (illustrative).
-- Carrier/backhaul interconnects where applicable; neutral host stance.
+- Broadcasters, airlines, maritime operators, enterprises, governments, and MNOs.
+- Partner ecosystems for ground equipment and managed service delivery; interconnect with terrestrial backhaul partners.
 
-_Demo content based on CityFibre public site and mid-year update; not production SLAs._
-
+_Demo content based on Eutelsat public site and provided investor/ESG reports; not production SLAs._ 

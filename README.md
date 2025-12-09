@@ -1,4 +1,4 @@
-# Build an AI Assistant for Telco using Snowflake Intelligence (CityFibre)
+# Build an AI Assistant for Telco using Snowflake Intelligence (Eutelsat)
 
 <p align="center">
   <strong>A comprehensive AI-powered business intelligence platform for B2B telecommunications</strong>
@@ -9,16 +9,16 @@
   <a href="#features">Features</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#local-testing">Local Testing</a> •
-  <a href="#exec-questions-to-try-cityfibre">Exec Questions & Prompts</a>
+  <a href="#exec-questions-to-try-eutelsat">Exec Questions & Prompts</a>
 </p>
 
 ---
 
 ## 🎯 Overview
 
-This project demonstrates how to build a production-ready AI assistant for **CityFibre**, the UK's independent wholesale-only full fibre network. It uses **Snowflake Cortex AI**, **Snowflake Intelligence**, and **Cortex Analyst** to answer questions about build progress, premises passed/ready for service, partner take-up, financing, and network reliability (e.g., 4.6M premises ready for service and 620k consumers connected as of H1 2025; speeds up to 5.5 Gbps, up to 95x faster than FTTC; target 8M premises)\*.
+This project demonstrates how to build a production-ready AI assistant for **Eutelsat**, a French-based satellite communications leader (founded 1977, HQ Paris) with a multi-orbit GEO + OneWeb LEO network. It uses **Snowflake Cortex AI**, **Snowflake Intelligence**, and **Cortex Analyst** to answer questions about broadcast reach (nearly 7,000 TV channels, ~1,400 HD, 1,100 radio, 274M homes), multi-orbit performance (35 GEO satellites plus ~600 LEO), vertical solutions (broadcast/video, aviation, maritime, enterprise/backhaul, government), investor updates (e.g., €828m capital increase in Nov 2025), and sustainability commitments (responsible space, digital inclusion)\*.
 
-\*Sources: `reports/CityFibre-Mid-year-update.pdf`, `reports/CFIH-Group-2024-Accounts.pdf`, and the [CityFibre website](https://cityfibre.com/).
+\*Sources: `reports/DOC_Investors_ECOM-Consolidated-accounts-FY25_EN_101025.pdf`, `reports/DOC_Investor_Amendment-URD-2024-25_EN_251125.pdf`, `reports/DOC_Group_URD_Eutelsat-Sustainability-Statement-2024-25_EN_301025.pdf`, `reports/DOC_Investors_Presentation-FY2024-25_EN_050825.pdf`, `reports/DOC_Investors_Q1-2025-26-Presentation_EN-211025.pdf`, and the [Eutelsat website](https://www.eutelsat.com/) plus [Wikipedia](https://en.wikipedia.org/wiki/Eutelsat).
 
 ### What You Get
 
@@ -31,7 +31,7 @@ This project demonstrates how to build a production-ready AI assistant for **Cit
 **AI & ML Tools**:
 - **🔍 6 Search Services** - Finance, HR, Marketing, Sales, Strategy, Network
 - **📈 4 Semantic Views** - Finance, Sales, Marketing, HR datamarts
-- **🤖 1 AI Agent** - CityFibre Executive Agent with 12 tools
+- **🤖 1 AI Agent** - Eutelsat Executive Agent with 12 tools
 - **💻 Streamlit Apps** - Cortex Agent interface
 - **📓 Snowflake Notebooks** - Data processing workflows
 
@@ -53,7 +53,7 @@ pip install snowflake-cli-labs
 
 # 2. Clone repository
 git clone <repository-url>
-cd Snowflake_AI_Demo_CityFibre
+cd Snowflake_AI_Demo_Eutelsat
 
 # 3. Configure Snowflake connection
 snow connection add --connection-name telco-local
@@ -66,8 +66,8 @@ cd local-testing
 ### What Gets Deployed
 
 ```
-✅ Database: CITYFIBRE_AI_DEMO
-✅ Warehouse: CITYFIBRE_DEMO_WH
+✅ Database: EUTELSAT_AI_DEMO
+✅ Warehouse: EUTELSAT_DEMO_WH
 ✅ Role: TELCO_ANALYST_ROLE (with CORTEX_USER)
 ✅ 20+ tables with demo data
 ✅ 6 Cortex Search Services
@@ -106,7 +106,7 @@ Natural language SQL queries across business datamarts:
 | **MARKETING_SEMANTIC_VIEW** | Campaigns, channels, leads, ROI |
 | **HR_SEMANTIC_VIEW** | Employees, departments, salaries, attrition |
 
-### 🤖 CityFibre Executive Agent
+### 🤖 Eutelsat Executive Agent
 
 **12 integrated tools**:
 - 4 Cortex Analyst tools (Query Finance/Sales/Marketing/HR Datamarts)
@@ -115,10 +115,11 @@ Natural language SQL queries across business datamarts:
 - 1 Email sending tool
 
 **Sample questions**:
-- "What is our total revenue by customer industry?"
-- "Where are our data centres located?"
-- "How do we compare to 8x8 and RingCentral?"
-- "Which marketing campaigns generated the most leads?"
+- "Summarize GEO vs LEO coverage, availability, and latency for aviation and maritime services."
+- "Break down revenue and pipeline by vertical: Broadcast & Video, Aviation, Maritime, Government, Enterprise/backhaul."
+- "What did the latest FY24/25 investor deck and Q1 presentation highlight on growth and capex?"
+- "Which beams or gateways show the highest utilisation, and where should we add capacity?"
+- "How many active GEO satellites and OneWeb LEO satellites are in service, and what markets do they cover?"
 
 ---
 
@@ -126,7 +127,7 @@ Natural language SQL queries across business datamarts:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                   CITYFIBRE AI DEMO PLATFORM                        │
+│                   EUTELSAT AI DEMO PLATFORM                        │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  Data Sources           AI Processing         Semantic Layer       │
@@ -138,7 +139,7 @@ Natural language SQL queries across business datamarts:
 │  ┌────────────────────────────────────────────────────────────────┐│
 │  │                 SNOWFLAKE INTELLIGENCE                         ││
 │  ├────────────────────────────────────────────────────────────────┤│
-│  │  CityFibre Executive Agent: 12 Tools | Multi-Modal | REST API  ││
+│  │  Eutelsat Executive Agent: 12 Tools | Multi-Modal | REST API  ││
 │  └────────────────────────────────────────────────────────────────┘│
 │                                                                     │
 │  ┌────────────────────────────────────────────────────────────────┐│
@@ -274,16 +275,15 @@ build-an-ai-assistant-for-telco/
 - "Which campaigns generated the most leads?"
 - "Marketing ROI by channel"
 
-### Exec Questions to Try (CityFibre)
-- Coverage & take-up: "Premises RFS by region vs target 8M; what’s the take-up % and velocity?"
-- Partner performance: "Net adds and penetration by ISP partner (Vodafone, Sky, TalkTalk, Zen, toob, Cuckoo)."
-- Revenue mix: "Top revenue by product category: FTTP tiers, DIA/Ethernet, dark fibre, backhaul, wholesale access."
-- Network quality: "Uptime and latency by region; where do we need capacity or resilience upgrades?"
-- Delivery: "Median/P90 install lead times by product and region; main blockers (civils/wayleaves)."
-- Financing/ROI: "Summarize the £2.3bn 2025 financing and planned capex deployment; which segments drive ARPA/ARPU uplift?"
-- Smart city/public sector: "Recent campus/transport/CCTV/IoT connections and SLA/NPS highlights."
-- Mobile/5G: "Where do we need additional backhaul or Open RAN fronthaul capacity?"
-- Marketing/demand: "Which campaigns or co-marketing motions are driving the most net adds and installs?"
+### Exec Questions to Try (Eutelsat)
+- Multi-orbit coverage: "Show GEO vs LEO availability, latency, and congestion by service (Broadcast, Aviation, Maritime, Backhaul)."
+- Broadcast reach: "How many TV channels and viewers are served across key video neighbourhoods, and what is the HD/UHD mix?"
+- Mobility performance: "Top aviation/maritime routes by utilisation and SLA adherence; where do we need more capacity?"
+- Investor view: "Summarize the FY24/25 investor presentations and consolidated accounts—growth drivers, capex, and leverage."
+- Government & ESG: "What resilience and responsible space commitments are in the Sustainability Statement? Any recent drills/incidents?"
+- Backhaul & enterprise: "Which regions need additional backhaul capacity or new gateways? Show pipeline by vertical."
+- Financial mix: "Revenue and margin by vertical; trend lines for mobility/backhaul vs broadcast."
+- Fleet view: "List active GEO satellites and OneWeb LEO constellation size; map coverage to major verticals."
 
 ---
 
@@ -295,9 +295,9 @@ Key configuration options:
 
 ```yaml
 variables:
-  EVENT_DATABASE: "CITYFIBRE_AI_DEMO"
-  EVENT_SCHEMA: "CITYFIBRE_SCHEMA"
-  EVENT_WAREHOUSE: "CITYFIBRE_DEMO_WH"
+  EVENT_DATABASE: "EUTELSAT_AI_DEMO"
+  EVENT_SCHEMA: "EUTELSAT_SCHEMA"
+  EVENT_WAREHOUSE: "EUTELSAT_DEMO_WH"
   EVENT_ATTENDEE_ROLE: "TELCO_ANALYST_ROLE"
 ```
 
@@ -340,8 +340,29 @@ This project is provided for educational and demonstration purposes.
 
 **Data Notes**:
 - All data is synthetic/generated for demonstration
-- CityFibre facts in prompts are sourced from the included official reports (`reports/CFIH-Group-2024-Accounts.pdf`, `reports/CityFibre-Mid-year-update.pdf`) and the public website; numbers are for demo only
+- Eutelsat facts in prompts are sourced from the provided investor/ESG reports, the public website, and Wikipedia; numbers are for demo only
+- Currency: all amounts in semantic views and facts are in EUR
+- Datasets are Eutelsat-aligned (GEO/LEO, broadcast/aviation/maritime/backhaul/government, global gateways/teleports)
 - Use only for learning Snowflake Cortex AI capabilities
+
+**To refresh Snowflake with the latest Eutelsat data** (requires Snowflake CLI):
+1) From a machine with `snow` configured:  
+```bash
+cd local-testing
+./run_pipeline.sh --step 2 --step 3 --step 5 --step 6
+```  
+- Step 2: Upload updated CSVs and documents (Eutelsat PDFs)  
+- Step 3: Data foundation (creates/loads tables like `eutelsat_kpi`, `region_coverage`, `activation_lead_time`, sales/finance/marketing/HR facts with EUR currency)  
+- Step 5: Deploy semantic views (aligned to new columns and EUR)  
+- Step 6: Deploy applications/agent (Eutelsat agent + search services)
+
+2) Validate post-deploy (optional):
+```sql
+SELECT * FROM eutelsat_kpi LIMIT 5;
+SELECT DISTINCT currency FROM sales_fact;
+SELECT DISTINCT region_name FROM region_coverage;
+SELECT DISTINCT vertical FROM sf_accounts;
+```
 
 ---
 

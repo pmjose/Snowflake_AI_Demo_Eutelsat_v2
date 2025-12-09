@@ -1,14 +1,14 @@
 -- ============================================================================
--- CityFibre AI Demo - Deploy Applications (DataOps Template)
+-- Eutelsat AI Demo - Deploy Applications (DataOps Template)
 -- ============================================================================
 -- Description: Deploys stored procedures, functions, and Intelligence Agent
 -- Variables: {{ DATABASE_NAME }}, {{ WAREHOUSE_NAME }}, {{ SCHEMA_NAME }}
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }};
 
 -- ============================================================================
 -- Step 1: Create Stored Procedure for Presigned URLs
@@ -28,7 +28,7 @@ DECLARE
     presigned_url STRING;
     sql_stmt STRING;
     expiration_seconds INTEGER;
-    stage_name STRING DEFAULT '@{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.DATA_STAGE';
+    stage_name STRING DEFAULT '@{{ env.EVENT_DATABASE | default("EUTELSAT_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("EUTELSAT_SCHEMA") }}.DATA_STAGE';
 BEGIN
     expiration_seconds := EXPIRATION_MINS * 60;
 
@@ -245,10 +245,10 @@ dependencies:
             
             # Create Streamlit app
             app_name = ''AUTO_GENERATED_1''
-            warehouse = ''{{ env.EVENT_WAREHOUSE | default("CITYFIBRE_DEMO_WH") }}''
+            warehouse = ''{{ env.EVENT_WAREHOUSE | default("EUTELSAT_DEMO_WH") }}''
             
             create_streamlit_sql = f"""
-            CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.{app_name}
+            CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("EUTELSAT_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("EUTELSAT_SCHEMA") }}.{app_name}
                 FROM @DATA_STAGE
                 MAIN_FILE = ''test.py''
                 QUERY_WAREHOUSE = {warehouse}
@@ -263,7 +263,7 @@ dependencies:
                 org_name = account_info[0][''ORG'']
                 
                 # Construct app URL
-                app_url = f"https://app.snowflake.com/{org_name}/{account_name}/#/streamlit-apps/{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.{app_name}"
+                app_url = f"https://app.snowflake.com/{org_name}/{account_name}/#/streamlit-apps/{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.{app_name}"
                 
                 # Return only the URL if successful
                 return app_url
@@ -276,7 +276,7 @@ dependencies:
 Warning: Could not auto-create Streamlit app: {str(create_error)}
 
 To create manually, run:
-CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.{app_name}
+CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("EUTELSAT_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("EUTELSAT_SCHEMA") }}.{app_name}
     FROM @DATA_STAGE
     MAIN_FILE = ''test.py''
     QUERY_WAREHOUSE = {warehouse};
@@ -299,39 +299,27 @@ CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO")
 -- Step 5: Create Snowflake Intelligence Agent
 -- ============================================================================
 
-CREATE OR REPLACE AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent
-WITH PROFILE='{ "display_name": "CityFibre UK Executive Agent" }'
-    COMMENT=$$ CityFibre wholesale full fibre intelligence agent for C-level executives (CEO, CFO, CMO, CCO). Covers build progress, premises passed/ready for service, take-up across residential, business, public sector, and mobile backhaul, channel partners, ARR/MRR, NPS, campaigns, and UK full fibre market analysis. All figures in British Pounds (£). $$
+CREATE OR REPLACE AGENT {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.Eutelsat_Executive_Agent
+WITH PROFILE='{ "display_name": "Eutelsat Executive Agent" }'
+    COMMENT=$$ Eutelsat executive agent for broadcast, mobility, enterprise/backhaul, telecom, and government services. Focuses on multi-orbit (GEO + OneWeb LEO) performance, revenue mix, pipeline, and ESG commitments. All demo values use EUR unless noted. $$
 FROM SPECIFICATION $$
 {
   "models": {
     "orchestration": ""
   },
   "instructions": {
-    "response": "You are a business intelligence analyst for CityFibre, the UK's independent wholesale-only full fibre network. You have access to build metrics, sales transactions, financial performance, marketing campaigns, HR information, and network infrastructure data. All monetary values are in British Pounds (£). Customer and market segments include residential homes, business, public sector campuses, mobile backhaul, and wholesale ISP partners. Network coverage spans UK regions (London, South East, Scotland, Wales, North West, and others) with 4.6 million premises ready for service as of June 2025 and a target of 8 million (CityFibre Mid-year Update 2025). Consumer connections total 620,000 with 102,000 net adds in H1 2025; speeds reach up to 5.5 Gbps and are up to 95x faster than FTTC with built-in reliability (CityFibre website). Partners include Vodafone, Sky, TalkTalk, Zen, toob, and Cuckoo. Competitors include BT Openreach/Virgin Media O2, Hyperoptic, and Gigaclear. Provide visualizations where helpful - use line charts for trends, bar charts for comparisons.\n\n**IMPORTANT GUARDRAILS:**\n- You MUST ONLY answer questions related to CityFibre business data, including build programmes, sales, finance, marketing, HR, network infrastructure, and competitive analysis.\n- You MUST NOT answer general knowledge questions, trivia, current events, politics, celebrities, sports, or any topic not directly related to CityFibre's business operations.\n- If asked about unrelated topics, politely decline and redirect: 'I can only help with questions about CityFibre data. You can ask about premises passed, take-up, partner performance, network uptime, or competitive positioning.'\n- Never use external knowledge to answer questions - only use the data and documents available through your tools.",
-    "orchestration": "Use cortex search for finance reports (including official accounts and mid-year update), strategy documents, partner contracts, network infrastructure, and competitive analysis. Use cortex analyst for structured data queries on build progress, sales, revenue, campaigns, and HR.\n\n**GUARDRAIL CHECK:** Before processing ANY query, first determine if it relates to CityFibre business data. If the query is about general knowledge, current events, politics, entertainment, or any topic NOT related to CityFibre's build, sales, finance, marketing, HR, network infrastructure, strategy, or competitive landscape - DO NOT use any tools and instead respond with a polite redirect to business-related questions.\n\nFor Sales Datamart: Contains sales and take-up across residential, business, public sector, mobile backhaul, and wholesale ISP partners. Products include full fibre broadband (up to 5.5Gbps), Business Internet & Ethernet, Dark Fibre & Backbone, Mobile & 5G Backhaul, Wholesale Partner Access, Smart City & Public Sector, Professional Services, Network Add-Ons, Channel Partner Enablement, and Infrastructure Solutions. UK regions include London, South East, Scotland, Wales, North West, and others.\n\nFor Marketing Datamart: Campaigns include Full Fibre City Launches, Partner Acquisition, Smart City enablement, PSTN switch-off awareness, and digital demand generation. Channels include Wholesale Partners, Direct Enterprise, Events, Webinars, LinkedIn, and local marketing.\n\nFor Strategy Documents: Search for market position, financing updates, ESG commitments, Ofcom compliance, partner portfolio, and board presentations.\n\nFor Network Infrastructure (USE 'Search Internal Documents: Network' tool): When users ask about premises passed, ready-for-service counts, uptime, resilience, carrier connections (BT Openreach, Virgin Media O2, mobile MNOs), backhaul capacity, latency, jitter, or fibre routes, ALWAYS use the Network search tool.",
+    "response": "You are a business intelligence analyst for Eutelsat, operating a global multi-orbit GEO + OneWeb LEO network. You have access to service performance, sales and pipeline, financial performance, marketing campaigns, HR information, and network infrastructure data. All monetary values are in Euros (€) unless otherwise noted. Customer and market segments include Broadcast & Video, Aviation, Maritime, Enterprise/Community WiFi, Government/Defence, and Telecom backhaul. Network coverage is global (pole-to-pole for LEO) with 6,400+ TV channels and ~1B viewers (Eutelsat site) and ongoing capital raises (e.g., €828m reserved capital increase in Nov 2025). Provide visualizations where helpful - use line charts for trends, bar charts for comparisons.\n\n**IMPORTANT GUARDRAILS:**\n- You MUST ONLY answer questions related to Eutelsat business data (multi-orbit performance, sales/pipeline, finance, marketing, HR, ESG, network infrastructure, competitive posture).\n- You MUST NOT answer general knowledge questions, trivia, politics, or unrelated topics. Politely redirect to business questions.\n- Never use external knowledge beyond the provided tools and documents.",
+    "response": "You are a business intelligence analyst for Eutelsat, operating a global multi-orbit GEO + OneWeb LEO network. You have access to service performance, sales and pipeline, financial performance, marketing campaigns, HR information, and network infrastructure data. All monetary values are in Euros (€) unless otherwise noted. Customer and market segments include Broadcast & Video, Aviation, Maritime, Enterprise/Community WiFi, Government/Defence, and Telecom backhaul. Network coverage is global (pole-to-pole for LEO) with nearly 7,000 TV channels (~1,400 HD, 1,100 radio) to 274M homes, 35 GEO satellites, and ~600 LEO satellites (Eutelsat site/Wikipedia). Provide visualizations where helpful - use line charts for trends, bar charts for comparisons.\n\n**IMPORTANT GUARDRAILS:**\n- You MUST ONLY answer questions related to Eutelsat business data (multi-orbit performance, sales/pipeline, finance, marketing, HR, ESG, network infrastructure, competitive posture).\n- You MUST NOT answer general knowledge questions, trivia, politics, or unrelated topics. Politely redirect to business questions.\n- Never use external knowledge beyond the provided tools and documents.",
+    "orchestration": "Use cortex search for investor reports (consolidated accounts, URD amendment, presentations), sustainability statement, board/governance docs, and network/service briefs. Use cortex analyst for structured data on revenue/pipeline by vertical, capacity/utilisation, SLAs, and HR/finance metrics.\n\n**GUARDRAIL CHECK:** If a query is not about Eutelsat services, performance, finance, HR, ESG, or competitive positioning, DO NOT use tools and redirect the user.\n\nFor Sales Datamart: Contains sales/pipeline across Broadcast & Video, Aviation, Maritime, Enterprise/backhaul, Government/Defence, and Telecom backhaul. Products include video neighbourhoods/managed platforms, IFC and maritime connectivity, community WiFi/backhaul, secure government links, and mobility/backhaul add-ons.\n\nFor Marketing Datamart: Campaigns include broadcast neighbourhood promotions, mobility (aviation/maritime) offers, backhaul on wheels, and government/ESG messaging. Channels include partners, events, webinars, and digital.\n\nFor Strategy Documents: Search for market position, capital increase details, ESG commitments (responsible space, digital inclusion, earth/space environment), partner ecosystem, and board presentations.\n\nFor Network Infrastructure (USE 'Search Internal Documents: Network' tool): When users ask about GEO/LEO availability, latency/jitter, capacity headroom by beam/gateway, gateway expansion, mobility routes, SLA performance, or satellite fleet status, ALWAYS use the Network search tool.",
     "sample_questions": [
-      {
-        "question": "How many premises are passed and ready for service by region, and what is take-up?"
-      },
-      {
-        "question": "Which ISP partners (Vodafone, Sky, TalkTalk, Zen, toob, Cuckoo) are driving the most net adds?"
-      },
-      {
-        "question": "Summarize the £2.3bn 2025 financing and its impact on build plans."
-      },
-      {
-        "question": "What are our top revenue-generating fibre products and backhaul services?"
-      },
-      {
-        "question": "Show network uptime, latency, and resilience for the full fibre footprint."
-      },
-      {
-        "question": "How many public sector and smart city sites are connected and what is their NPS?"
-      },
-      {
-        "question": "How does take-up pace compare to the 620k connected customers baseline?"
-      }
+      { "question": "Summarize GEO vs LEO availability, latency, and congestion by service (Broadcast, Aviation, Maritime, Backhaul)." },
+      { "question": "What do the FY24/25 investor deck and Q1 2025/26 presentation say about growth drivers, capex, and leverage?" },
+      { "question": "Break down revenue and pipeline by vertical and product family; highlight trends in mobility/backhaul." },
+      { "question": "Which beams or gateways are most utilized and where should we expand capacity?" },
+      { "question": "What resilience and responsible space commitments are documented in the Sustainability Statement?" },
+      { "question": "Show SLA performance and recent incidents for aviation and maritime customers." },
+      { "question": "List top government/defence deals and any security/assurance requirements to note." },
+      { "question": "How many active GEO satellites and OneWeb LEO satellites are in service, and which regions do they cover?" }
     ]
   },
   "tools": [
@@ -339,35 +327,35 @@ FROM SPECIFICATION $$
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query Finance Datamart",
-        "description": "Query CityFibre financial data: build capex, revenue by fibre product category (full fibre broadband, ethernet, dark fibre, backhaul, wholesale partner access), partner economics, vendor spend (construction partners, cloud providers), expenses, and department costs. All amounts in British Pounds (£)."
+        "description": "Query Eutelsat financial data: revenue and margin by vertical (Broadcast & Video, Aviation, Maritime, Enterprise/backhaul, Government/Defence, Telecom backhaul), fleet/gateway capex, spectrum/ground opex, partner economics, and department costs. All amounts in Euros (€) unless noted."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query Sales Datamart",
-        "description": "Query CityFibre sales and take-up data: by customer/market segment (Homes/Enterprise/Public Sector/Partner/Mobile), industry, products (Full Fibre Broadband, Business Internet & Ethernet, Dark Fibre & Backbone, Mobile & 5G Backhaul, Wholesale Partner Access, Smart City & Public Sector, Add-Ons), UK regions (London, Scotland, Wales, North West, etc.), and revenue. Use for revenue analysis, top customers, partner performance, and product adoption."
+        "description": "Query Eutelsat sales and pipeline: by customer/market segment (Broadcast & Video, Aviation, Maritime, Enterprise/backhaul, Government/Defence, Telecom), product family (video neighbourhoods/managed platforms, IFC/maritime connectivity, community WiFi/backhaul, secure links), region, and revenue. Use for revenue analysis, top customers, partner performance, and product adoption."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query HR Datamart",
-        "description": "Query CityFibre workforce data: employees, departments, jobs, channel account managers, salaries, and attrition. Employee names include build programme leaders and partner managers."
+        "description": "Query Eutelsat workforce data: employees, departments, jobs, account managers, salaries, and attrition. Includes satellite operations, ground engineering, NOC/SOC, mobility delivery, sales/partner roles."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_analyst_text_to_sql",
         "name": "Query Marketing Datamart",
-        "description": "Query CityFibre marketing data: campaigns (Full Fibre City Launch, Partner Acquisition, Smart City enablement, PSTN Switch-off awareness), channels (Wholesale Partners, Digital, Events, Webinars, LinkedIn), spend, impressions, leads, and ROI. Use for campaign effectiveness and partner marketing analysis."
+        "description": "Query Eutelsat marketing data: campaigns for broadcast neighbourhoods, mobility (aviation/maritime), backhaul on wheels, government/ESG messaging; channels (partners, digital, events, webinars). Use for spend, leads, impressions, and ROI."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Finance",
-        "description": "Search CityFibre finance documents: official accounts, 2025 mid-year update (£2.3bn financing), ARPU/ARPA analysis, unit economics, partner revenue mix, ESG sustainability report, Ofcom compliance, and vendor contracts."
+        "description": "Search Eutelsat finance documents: consolidated accounts FY25, URD amendment, FY24/25 investor presentations, Q1 2025/26 deck, capital increase (€828m) notes, ARPU/ARPA analysis, partner revenue mix, ESG and sustainability reporting."
       }
     },
     {
@@ -381,7 +369,7 @@ FROM SPECIFICATION $$
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Sales",
-        "description": "Search CityFibre sales documents: channel partner playbooks, take-up performance reports, wholesale ISP onboarding guides, and customer success stories. Includes competitive positioning vs BT Openreach/Virgin Media O2 and other fibre altnets."
+        "description": "Search Eutelsat sales documents: partner playbooks for broadcast/mobility/backhaul, performance reports, onboarding guides, customer success stories, and competitive positioning vs other satellite operators/terrestrial alternatives."
       }
     },
     {
@@ -395,14 +383,14 @@ FROM SPECIFICATION $$
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Strategy",
-        "description": "Search CEO/strategy documents including network build roadmaps, financing summaries, market position analysis vs Openreach/Virgin Media O2, investor relations FAQ, board presentations, ESG reports, and Ofcom compliance."
+        "description": "Search CEO/strategy documents including multi-orbit roadmaps, financing summaries, market position analysis, investor relations FAQ, board presentations, ESG reports, and governance content."
       }
     },
     {
       "tool_spec": {
         "type": "cortex_search",
         "name": "Search Internal Documents: Network",
-        "description": "Search network infrastructure documents including fibre footprint coverage (premises passed and ready for service), platform uptime, carrier/backhaul connections, latency/jitter, resilience, smart city backhaul, and network redundancy."
+        "description": "Search network infrastructure documents including GEO/LEO coverage, platform uptime, latency/jitter, beam/gateway capacity, mobility/backhaul performance, and resiliency/failover playbooks."
       }
     },
     {
@@ -483,67 +471,67 @@ FROM SPECIFICATION $$
       "execution_environment": {
         "query_timeout": 0,
         "type": "warehouse",
-        "warehouse": "{{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}"
+        "warehouse": "{{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }}"
       },
-      "identifier": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.GET_FILE_PRESIGNED_URL_SP",
+      "identifier": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.GET_FILE_PRESIGNED_URL_SP",
       "name": "GET_FILE_PRESIGNED_URL_SP(VARCHAR, DEFAULT NUMBER)",
       "type": "procedure"
     },
     "Query Finance Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.FINANCE_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.FINANCE_SEMANTIC_VIEW"
     },
     "Query HR Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.HR_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.HR_SEMANTIC_VIEW"
     },
     "Query Marketing Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.MARKETING_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.MARKETING_SEMANTIC_VIEW"
     },
     "Query Sales Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SALES_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SALES_SEMANTIC_VIEW"
     },
     "Search Internal Documents: Finance": {
       "id_column": "FILE_URL",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_FINANCE_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEARCH_FINANCE_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: HR": {
       "id_column": "FILE_URL",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_HR_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEARCH_HR_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Marketing": {
       "id_column": "RELATIVE_PATH",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_MARKETING_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEARCH_MARKETING_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Sales": {
       "id_column": "FILE_URL",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_SALES_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEARCH_SALES_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Strategy": {
       "id_column": "RELATIVE_PATH",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_STRATEGY_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEARCH_STRATEGY_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Network": {
       "id_column": "RELATIVE_PATH",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_NETWORK_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEARCH_NETWORK_DOCS",
       "title_column": "TITLE"
     },
     "Send_Emails": {
       "execution_environment": {
         "query_timeout": 0,
         "type": "warehouse",
-        "warehouse": "{{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}"
+        "warehouse": "{{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }}"
       },
-      "identifier": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEND_MAIL",
+      "identifier": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.SEND_MAIL",
       "name": "SEND_MAIL(VARCHAR, VARCHAR, VARCHAR)",
       "type": "procedure"
     },
@@ -551,9 +539,9 @@ FROM SPECIFICATION $$
       "execution_environment": {
         "query_timeout": 0,
         "type": "warehouse",
-        "warehouse": "{{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}"
+        "warehouse": "{{ env.EVENT_WAREHOUSE | default('EUTELSAT_DEMO_WH') }}"
       },
-      "identifier": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.WEB_SCRAPE",
+      "identifier": "{{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.WEB_SCRAPE",
       "name": "WEB_SCRAPE(VARCHAR)",
       "type": "function"
     }
@@ -566,22 +554,22 @@ $$;
 -- ============================================================================
 
 -- Grant USAGE on the agent to the analyst role (CEO, CFO, CRO users have this role)
-GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent 
+GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.Eutelsat_Executive_Agent 
     TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
 -- Also grant to ACCOUNTADMIN for admin access
-GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent 
+GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.Eutelsat_Executive_Agent 
     TO ROLE ACCOUNTADMIN;
 
 -- Grant to PUBLIC for broader access (optional - remove if you want restricted access)
-GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.CityFibre_Executive_Agent 
+GRANT USAGE ON AGENT {{ env.EVENT_DATABASE | default('EUTELSAT_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('EUTELSAT_SCHEMA') }}.Eutelsat_Executive_Agent 
     TO ROLE PUBLIC;
 
 -- ============================================================================
 -- Verification
 -- ============================================================================
 
-SELECT 'CityFibre AI Demo applications deployed successfully!' AS status,
+SELECT 'Eutelsat AI Demo applications deployed successfully!' AS status,
        'Procedures: Get_File_Presigned_URL_SP, send_mail, Web_scrape, GENERATE_STREAMLIT_APP' AS procedures_created,
-       'Agent: {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.CityFibre_Executive_Agent' AS agent_created,
+       'Agent: {{ env.EVENT_DATABASE | default("EUTELSAT_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("EUTELSAT_SCHEMA") }}.Eutelsat_Executive_Agent' AS agent_created,
        CURRENT_TIMESTAMP() AS deployed_at;

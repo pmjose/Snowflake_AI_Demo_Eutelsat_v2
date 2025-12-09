@@ -1,43 +1,43 @@
 vendor_key,vendor_name,vertical,address,city,county,postcode
-1,Microsoft UK,Platform Partner,2 Kingdom Street,London,Greater London,W2 6BD
-2,Cisco UK,Network Equipment,Bedfont Lakes,Feltham,Middlesex,TW14 8HA
-3,Amazon Web Services UK,Cloud Provider,60 Holborn Viaduct,London,Greater London,EC1A 2FD
-4,Google Cloud UK,Cloud Provider,6 Pancras Square,London,Greater London,N1C 4AG
-5,Poly UK,Hardware Partner,Pinewood Studios,Iver Heath,Buckinghamshire,SL0 0NH
-6,Yealink UK,Hardware Partner,31 Enterprise Way,London,Greater London,EC2A 4NE
-7,Jabra UK,Hardware Partner,Langstone Road,Langley,Berkshire,SL3 8DS
-8,Snom UK,Hardware Partner,45 Technology Park,Watford,Hertfordshire,WD18 8YS
-9,Grandstream UK,Hardware Partner,22 Commercial Road,London,Greater London,EC1V 2NB
-10,BT Openreach,Connectivity Provider,81 Newgate Street,London,Greater London,EC1A 7AJ
-11,CityFibre,Connectivity Provider,15 Bedford Street,London,Greater London,WC2E 9HE
-12,Virgin Media Business,Connectivity Provider,500 Brook Drive,Reading,Berkshire,RG2 6UU
-13,TalkTalk Business,Connectivity Provider,11 Evesham Street,London,Greater London,W11 4AR
-14,Vodafone Business,Connectivity Provider,1 Kingdom Street,London,Greater London,W2 6BY
-15,Neutral Host Mobile Partner,Mobile Backhaul Partner,5 Fleet Place,London,Greater London,EC4M 7RD
-16,Salesforce UK,CRM Partner,110 Bishopsgate,London,Greater London,EC2N 4AY
-17,HubSpot UK,CRM Partner,6th Floor One Lyric Square,London,Greater London,W6 0NB
-18,Zendesk UK,CX Platform,25 Wilton Road,London,Greater London,SW1V 1LW
-19,ServiceNow UK,ITSM Partner,Strata House,London,Greater London,WC2H 9JQ
-20,Twilio UK,CPaaS Partner,17 Bevis Marks,London,Greater London,EC3A 7LN
-21,Bandwidth UK,Voice Provider,82 Innovation Drive,Reading,Berkshire,RG2 6GP
-22,Pexip UK,Video Partner,15 Appold Street,London,Greater London,EC2A 2NE
-23,Zoom UK,Video Partner,60 Cheapside,London,Greater London,EC2V 6AX
-24,Mitel UK,UCaaS Partner,Uxbridge Business Park,Uxbridge,Middlesex,UB8 1DH
-25,Ribbon Communications,Voice Provider,5 George Road,Edgbaston,Birmingham,B15 1NP
-26,Sangoma UK,Voice Systems,45 Business Park,Bracknell,Berkshire,RG12 1NN
-27,Oracle UK,Software Partner,1 South Place,London,Greater London,EC2M 2RB
-28,SAP UK,Software Partner,Clockhouse Place,Feltham,Middlesex,TW14 8HD
-29,Dell Technologies UK,Hardware Partner,Dell House,Bracknell,Berkshire,RG12 1LF
-30,HP UK,Hardware Partner,88 Wood Street,London,Greater London,EC2V 7RS
-31,Lenovo UK,Hardware Partner,25 Canada Square,London,Greater London,E14 5LQ
-32,Unify UK,UCaaS Partner,The Bower,London,Greater London,E1 6JJ
-33,Avaya UK,Contact Centre,2 Pancras Square,London,Greater London,N1C 4AG
-34,NICE UK,Contact Centre,18 Fleet Place,London,Greater London,EC4M 7RD
-35,Genesys UK,Contact Centre,90 High Holborn,London,Greater London,WC1V 6LJ
-36,Five9 UK,Contact Centre,125 Kingsway,London,Greater London,WC2B 6NH
-37,Talkdesk UK,Contact Centre,40 Holborn Viaduct,London,Greater London,EC1N 2PB
-38,Content Guru,Contact Centre,24 Old Queen Street,London,Greater London,SW1H 9HP
-39,Cirrus Response,Contact Centre,Epworth House,Leeds,West Yorkshire,LS1 4DY
+1,Teleport Operator EU,Ground & Gateway,1 Gateway Way,Paris,FR,75001
+2,Teleport Operator MEA,Ground & Gateway,12 Earth Station Road,Johannesburg,ZA,2001
+3,Teleport Operator Americas,Ground & Gateway,88 Downlink Ave,Miami,US,33101
+4,Teleport Operator APAC,Ground & Gateway,5 Uplink Street,Singapore,SG,018989
+5,Ground Equipment Vendor,Satellite Hardware,20 Antenna Park,Munich,DE,80331
+6,RF Systems Supplier,Satellite Hardware,44 Spectrum Blvd,Oslo,NO,0155
+7,Modem/Terminal Partner,Satellite Hardware,77 Terminal Lane,Toulouse,FR,31000
+8,Cloud Edge Partner,Cloud,99 Edge Zone,Frankfurt,DE,60311
+9,Analytics Platform Partner,Analytics,15 Data Drive,Amsterdam,NL,1012
+10,Security Partner,SOC/NOC,50 Shield Road,Brussels,BE,1000
+11,Integration Partner,Services,8 Orbit Way,Dubai,AE,00000
+12,Maritime Install Partner,Mobility,21 Port Access,Marseilles,FR,13001
+13,Aviation Install Partner,Mobility,12 Aerotech Park,Dublin,IE,D01
+14,MNO Backhaul Partner,Telecom,2 Carrier Plaza,Nairobi,KE,00100
+15,Government Systems Partner,Government,17 Secure Link,Ottawa,CA,K1A0A2
+16,Content Delivery Partner,Broadcast,61 Media Quay,London,UK,EC2A 2BB
+17,Cloud Compute Partner,Cloud,10 Compute Way,Stockholm,SE,11122
+18,Data Center Partner,Infrastructure,3 Colo Court,Zurich,CH,8001
+19,Field Services LATAM,Services,22 Servicio Calle,Lima,PE,15001
+20,Field Services APAC,Services,35 Install Blvd,Sydney,AU,2000
+21,Spectrum Advisor,Spectrum,9 RF Plaza,Doha,QA,00000
+22,Edge CDN Partner,Broadcast,7 CDN Way,Madrid,ES,28001
+23,OSS/BSS Partner,Platform,14 Integration Row,Bangalore,IN,560001
+24,Ticketing/Support Partner,Platform,6 Support Lane,Prague,CZ,11000
+25,Finance/ERP Partner,Software,3 Ledger Street,Bucharest,RO,010101
+26,HRIS Partner,Software,4 People Park,Vienna,AT,1010
+27,Satellite Bus OEM,Satellite Hardware,11 Bus Way,Cannes,FR,06150
+28,Launch Services Partner,Launch,18 Pad Road,Kourou,GF,97310
+29,Payload Integration Partner,Satellite Hardware,27 Payload Ave,Rome,IT,00100
+30,Energy Provider,Utilities,5 Power Street,Lagos,NG,101001
+31,Logistics Partner,Supply Chain,13 Freight Road,Antwerp,BE,2000
+32,Training Partner,Services,41 Learning Loop,Lisbon,PT,1100
+33,Insurance Partner,Finance,23 Risk Row,Copenhagen,DK,1050
+34,QA/Test Lab Partner,Quality,29 Test Park,Hamburg,DE,20095
+35,Monitoring/Telemetry Partner,Analytics,31 Telemetry Way,Helsinki,FI,00100
+36,Content Aggregator,Broadcast,39 Channel Street,Istanbul,TR,34000
+37,Space Situational Awareness,Space Safety,26 SSA Road,Athens,GR,10552
+38,Environmental Services,ESG,42 Green Blvd,Reykjavik,IS,101
+39,Field Services NA,Services,55 Service Lane,Dallas,US,75201
 40,8x8 UK,UCaaS Competitor,28 Cannon Street,London,Greater London,EC4M 6XH
 41,RingCentral UK,UCaaS Competitor,60 Victoria Embankment,London,Greater London,EC4Y 0JP
 42,Vonage UK,UCaaS Competitor,23 Savile Row,London,Greater London,W1S 2ET

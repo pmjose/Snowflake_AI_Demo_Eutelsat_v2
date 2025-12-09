@@ -1,33 +1,34 @@
-# CityFibre Wholesale Partner Guide (Demo)
+# Eutelsat Partner Guide (Demo)
 
 ## Positioning
-- Wholesale-only full fibre; neutral host with partner choice.
-- Speeds up to 5.5 Gbps (homes) and symmetric DIA/Ethernet for business.
-- Reliability and resilience vs FTTC; proactive monitoring.
+- Multi-orbit connectivity with GEO reach and LEO low-latency performance; resilient, secure links for mission-critical workloads.
+- Broadcast leadership plus mobility/backhaul depth; trusted operator with 40+ years of service delivery (site).
+- Partner-friendly: service providers, integrators, and government contractors can bundle managed services using Eutelsat capacity and platforms.
 
 ## Core Offers
-- Homes FTTP tiers (e.g., 500 Mbps–5.5 Gbps), WiFi bundles, optional 4G/5G failover.
-- Business: DIA 1G/10G, resilient pairs, metro/long-haul dark fibre, cloud on-ramps (AWS/Azure/GCP).
-- Mobile: 5G/4G backhaul, small cell/Open RAN fronthaul, edge DC access.
-- Public Sector & Smart City: campus fibre, CCTV/IoT backbones, transport hubs, public WiFi backhaul.
+- **Broadcast & Video**: video neighbourhoods, DTH/DTT feeds, contribution, managed platforms, Sat.TV EPG.
+- **Mobility (Aviation/Maritime)**: inflight connectivity and high-speed maritime broadband with seamless GEO/LEO handover and managed QoS.
+- **Enterprise/Backhaul**: community WiFi, education, energy/mining connectivity, retail/banking resilience, “Backhaul on Wheels,” and rural cell backhaul.
+- **Government & Defence**: secure, resilient connectivity for civil government, security, defence, and disaster recovery/humanitarian missions.
+- **Telecoms**: cellular backhaul, fronthaul support, and rapid transmission capacity for underserved regions.
 
 ## Target Segments
-- Residential mass-market via ISPs.
-- SMB/Enterprise needing low-latency DIA/Ethernet and cloud connectivity.
-- Public sector estates; smart city programmes.
-- MNOs for mobile/5G backhaul and fronthaul.
+- Broadcasters and platform operators needing high-availability video distribution.
+- Airlines, cruise/ferry operators, merchant shipping, offshore supply, and research vessels.
+- Enterprises in remote/harsh environments; retailers needing resilient secondary paths.
+- Governments/NGOs requiring secure, assured links and rapid deployment kits.
+- MNOs seeking rural backhaul or surge capacity.
 
 ## Partner Success Focus
-- Time to install: streamline wayleaves, clear SLAs, proactive updates.
-- Net adds: joint campaigns, local marketing, offer speed upgrades.
-- Quality: uptime/latency/jitter reporting; rapid incident comms.
-- API/OSS: ordering, provisioning, ticketing integrations.
+- Service activation speed: pre-staged kits where possible; clear SLAs; proactive capacity planning by beam/region.
+- Experience: uptime/latency/jitter reporting; managed QoS options; rapid incident comms.
+- Co-marketing: industry-specific messaging for aviation/maritime/enterprise/government; reference success stories from investor deck.
+- Integration: APIs/OSS for ordering/provisioning/ticketing; support for diverse ground equipment.
 
 ## Metrics Partners Care About (examples)
-- Premises RFS and address match.
-- Lead times by product.
-- Uptime and latency; capacity headroom.
-- Net adds, churn, NPS by ISP.
+- Availability/SLA by service and region; latency bands for GEO vs LEO.
+- Throughput and capacity headroom by beam and gateway.
+- Activation lead times and incident response times.
+- NPS/CSAT by vertical and service.
 
-_Demo-only content to support Cortex Search and agent responses._
-
+_Demo-only content to support Cortex Search and agent responses._ 
