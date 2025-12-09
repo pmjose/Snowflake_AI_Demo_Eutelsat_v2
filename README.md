@@ -273,6 +273,17 @@ build-an-ai-assistant-for-telco/
 - "Which campaigns generated the most leads?"
 - "Marketing ROI by channel"
 
+### Exec Questions to Try (CityFibre)
+- Coverage & take-up: "Premises RFS by region vs target 8M; what’s the take-up % and velocity?"
+- Partner performance: "Net adds and penetration by ISP partner (Vodafone, Sky, TalkTalk, Zen, toob, Cuckoo)."
+- Revenue mix: "Top revenue by product category: FTTP tiers, DIA/Ethernet, dark fibre, backhaul, wholesale access."
+- Network quality: "Uptime and latency by region; where do we need capacity or resilience upgrades?"
+- Delivery: "Median/P90 install lead times by product and region; main blockers (civils/wayleaves)."
+- Financing/ROI: "Summarize the £2.3bn 2025 financing and planned capex deployment; which segments drive ARPA/ARPU uplift?"
+- Smart city/public sector: "Recent campus/transport/CCTV/IoT connections and SLA/NPS highlights."
+- Mobile/5G: "Where do we need additional backhaul or Open RAN fronthaul capacity?"
+- Marketing/demand: "Which campaigns or co-marketing motions are driving the most net adds and installs?"
+
 ---
 
 ## 🔧 Configuration

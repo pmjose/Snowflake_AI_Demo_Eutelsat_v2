@@ -34,7 +34,7 @@ USE DATABASE TELCO_OPERATIONS_AI;
 - **Name**: `TELCO_INTELLIGENCE_AGENT`
 - **Description**: `Intelligence agent for telco operations - combines semantic models and search for comprehensive analysis`
 - **Schema**: Select `TELCO_OPERATIONS_AI.CORTEX_ANALYST` from the dropdown (⚠️ **Important**: This is where the semantic models are located)
-- **Warehouse**: Select `TELCO_WH`
+- **Warehouse**: Select `CITYFIBRE_DEMO_WH`
 - **Timeout**: `60` seconds
 
 After pressing Create Agent, you will be asked to populate the description.  This will give an overview for the users as they as they select the agent within Snowflake Intelligence.

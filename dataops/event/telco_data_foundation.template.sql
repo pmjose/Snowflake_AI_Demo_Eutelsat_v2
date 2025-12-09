@@ -143,6 +143,32 @@ CREATE OR REPLACE TABLE cityfibre_kpi (
     category VARCHAR(50)
 ) COMMENT = 'Reference KPIs for CityFibre demo (RFS, take-up, financing, speed)';
 
+-- Region RFS and take-up (demo)
+CREATE OR REPLACE TABLE region_rfs_progress (
+    region_key INT PRIMARY KEY,
+    region_name VARCHAR(200),
+    premises_rfs NUMBER(18,0),
+    takeup_pct NUMBER(6,3),
+    avg_install_days INT,
+    data_as_of VARCHAR(50)
+) COMMENT = 'Region-level ready-for-service counts, take-up %, and install cycle time';
+
+-- Segment ARPA/ARPU (demo)
+CREATE OR REPLACE TABLE arpu_segment (
+    segment VARCHAR(100) PRIMARY KEY,
+    arpa_gbp NUMBER(10,2),
+    arpu_gbp NUMBER(10,2),
+    as_of_note VARCHAR(100)
+) COMMENT = 'Illustrative ARPA/ARPU by segment for CityFibre demo';
+
+-- Install lead time by product category (demo)
+CREATE OR REPLACE TABLE install_lead_time (
+    product_category VARCHAR(150) PRIMARY KEY,
+    avg_install_days INT,
+    p90_install_days INT,
+    notes VARCHAR(200)
+) COMMENT = 'Illustrative install lead times by product category';
+
 -- Sales Fact Table
 CREATE OR REPLACE TABLE sales_fact (
     sale_id INT PRIMARY KEY,
@@ -332,6 +358,30 @@ ON_ERROR = 'CONTINUE';
 -- Load Location Dimension
 COPY INTO location_dim
 FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/location_dim.csv
+FILE_FORMAT = CSV_FORMAT
+ON_ERROR = 'CONTINUE';
+
+-- Load CityFibre KPI Reference
+COPY INTO cityfibre_kpi
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/cityfibre_kpi.csv
+FILE_FORMAT = CSV_FORMAT
+ON_ERROR = 'CONTINUE';
+
+-- Load Region RFS/Take-up
+COPY INTO region_rfs_progress
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/region_rfs_progress.csv
+FILE_FORMAT = CSV_FORMAT
+ON_ERROR = 'CONTINUE';
+
+-- Load ARPA/ARPU by Segment
+COPY INTO arpu_segment
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/arpu_segment.csv
+FILE_FORMAT = CSV_FORMAT
+ON_ERROR = 'CONTINUE';
+
+-- Load Install Lead Times
+COPY INTO install_lead_time
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/install_lead_time.csv
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
