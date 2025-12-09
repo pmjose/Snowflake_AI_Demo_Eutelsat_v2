@@ -1,0 +1,42 @@
+# Generated deployment files
+deployment/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+/tmp/
+
+# Snowflake
+.snowflake/
+snowsql_rt.log*
+
+# Local config
+.env
+*.local
+
+# Local testing (contains keys and credentials)
+local-testing/
+
