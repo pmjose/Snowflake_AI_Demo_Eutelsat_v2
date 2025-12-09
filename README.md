@@ -1,4 +1,4 @@
-# Build an AI Assistant for Telco using AISQL and Snowflake Intelligence
+# Build an AI Assistant for Telco using Snowflake Intelligence (CityFibre)
 
 <p align="center">
   <strong>A comprehensive AI-powered business intelligence platform for B2B telecommunications</strong>
@@ -8,7 +8,8 @@
   <a href="#quick-start">Quick Start</a> •
   <a href="#features">Features</a> •
   <a href="#architecture">Architecture</a> •
-  <a href="#local-testing">Local Testing</a>
+  <a href="#local-testing">Local Testing</a> •
+  <a href="#exec-questions-to-try-cityfibre">Exec Questions & Prompts</a>
 </p>
 
 ---
