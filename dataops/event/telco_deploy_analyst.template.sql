@@ -7,9 +7,9 @@
 
 -- Use ACCOUNTADMIN to own semantic views (allows editing in Snowsight)
 USE ROLE ACCOUNTADMIN;
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 -- ============================================================================
 -- FINANCE SEMANTIC VIEW

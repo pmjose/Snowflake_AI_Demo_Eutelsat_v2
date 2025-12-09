@@ -6,9 +6,9 @@
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 -- ============================================================================
 -- Step 1: Upload CSV Data Files to DATA_STAGE/demo_data/
@@ -48,6 +48,7 @@ PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/networ
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/sales/*.md' @DATA_STAGE/unstructured_docs/sales/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/marketing/*.md' @DATA_STAGE/unstructured_docs/marketing/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/hr/*.md' @DATA_STAGE/unstructured_docs/hr/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
+PUT 'file://{{ env.CI_PROJECT_DIR }}/dataops/event/DATA/unstructured_docs/demo/*.md' @DATA_STAGE/unstructured_docs/demo/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE PARALLEL=4;
 
 -- Upload official CityFibre reports (PDF)
 PUT 'file://{{ env.CI_PROJECT_DIR }}/reports/CFIH-Group-2024-Accounts.pdf' @DATA_STAGE/unstructured_docs/finance/ AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
@@ -94,5 +95,5 @@ ORDER BY folder;
 -- ============================================================================
 
 SELECT 'File upload complete!' AS status,
-       '{{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}' AS database_name,
+       '{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' AS database_name,
        CURRENT_TIMESTAMP() AS uploaded_at;

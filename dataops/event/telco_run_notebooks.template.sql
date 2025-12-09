@@ -7,17 +7,17 @@
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
 
 -- ============================================================================
 -- Verify Notebooks Are Deployed
 -- ============================================================================
 
-SHOW NOTEBOOKS IN SCHEMA {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_NOTEBOOKS_SCHEMA | default('NOTEBOOKS') }};
+SHOW NOTEBOOKS IN SCHEMA {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_NOTEBOOKS_SCHEMA | default('NOTEBOOKS') }};
 
 SELECT 'Notebooks are ready for manual execution!' AS status,
-       '{{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}' AS database_name,
+       '{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' AS database_name,
        CURRENT_TIMESTAMP() AS verified_at;
 
 -- ============================================================================

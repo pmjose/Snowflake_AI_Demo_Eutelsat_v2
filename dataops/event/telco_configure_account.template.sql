@@ -1,7 +1,7 @@
 -- Use ACCOUNTADMIN role for setup
 USE ROLE ACCOUNTADMIN;
 
-ALTER SESSION SET QUERY_TAG = '''{"origin":"sf_sit-is", "name":"Build an AI Assistant for Telco using AISQL and Snowflake Intelligence", "version":{"major":1, "minor":0},"attributes":{"is_quickstart":0, "source":"sql"}}''';
+ALTER SESSION SET QUERY_TAG = '''{"origin":"sf_sit-is", "name":"CityFibre AI Demo", "version":{"major":1, "minor":0},"attributes":{"is_quickstart":0, "source":"sql"}}''';
 
 -- ============================================================================
 -- Create Warehouse Early (required for EXECUTE IMMEDIATE blocks)
@@ -120,15 +120,15 @@ SELECT 'FSI lab role cleanup complete!' AS role_cleanup_status,
 -- Step 2: Create Dedicated Warehouse
 -- ============================================================================
 
-CREATE WAREHOUSE IF NOT EXISTS {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }}
+CREATE WAREHOUSE IF NOT EXISTS {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}
     WAREHOUSE_SIZE = '{{ env.EVENT_WAREHOUSE_SIZE | default("MEDIUM") }}'
     AUTO_SUSPEND = {{ env.EVENT_AUTO_SUSPEND | default(300) }}
     AUTO_RESUME = TRUE
     INITIALLY_SUSPENDED = TRUE
     COMMENT = 'Warehouse for Telco Operations AI - Event: {{ EVENT_NAME }}';
 
-GRANT USAGE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }} TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-GRANT OPERATE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }} TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
+GRANT USAGE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }} TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
+GRANT OPERATE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }} TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
 -- ============================================================================
 -- Step 3: Create Database and Schemas
@@ -136,13 +136,13 @@ GRANT OPERATE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }} TO RO
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
-CREATE DATABASE IF NOT EXISTS {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}
-    COMMENT = 'Database for Telco Operations AI - All stages and data pre-loaded';
+CREATE DATABASE IF NOT EXISTS {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}
+    COMMENT = 'Database for CityFibre AI demo - All stages and data pre-loaded';
 
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
 
 -- Create schemas
-CREATE OR REPLACE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}
+CREATE OR REPLACE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}
     COMMENT = 'Main schema for call center data tables';
 
 CREATE OR REPLACE SCHEMA {{ env.EVENT_CORTEX_ANALYST_SCHEMA | default('CORTEX_ANALYST') }}
@@ -161,7 +161,7 @@ CREATE OR REPLACE SCHEMA {{ env.EVENT_MODELS_SCHEMA | default('MODELS') }}
 -- Step 4: Create File Formats
 -- ============================================================================
 
-USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 CREATE OR REPLACE FILE FORMAT CSV_FORMAT
     TYPE = 'CSV'
@@ -303,7 +303,7 @@ GRANT ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }} TO USER
 GRANT ROLE ACCOUNTADMIN TO USER {{ env.EVENT_USER_NAME }};
 
 -- Grant warehouse access
-GRANT USAGE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }} TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
+GRANT USAGE ON WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }} TO ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
 
 -- Grant roles to event admin user
 GRANT ROLE ACCOUNTADMIN TO USER {{ env.EVENT_ADMIN_NAME }};
@@ -330,51 +330,51 @@ USE ROLE USERADMIN;
 -- Set defaults for event user
 ALTER USER {{ env.EVENT_USER_NAME }} SET
     DEFAULT_ROLE = ACCOUNTADMIN
-    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
+    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
 
 -- Set defaults for event admin user
 ALTER USER {{ env.EVENT_ADMIN_NAME }} SET
     DEFAULT_ROLE = ACCOUNTADMIN
-    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
+    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
 
 -- Set defaults for CEO user
 ALTER USER {{ env.EVENT_CEO_NAME }} SET
     DEFAULT_ROLE = ACCOUNTADMIN
-    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
+    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
 
 -- Set defaults for CFO user
 ALTER USER {{ env.EVENT_CFO_NAME }} SET
     DEFAULT_ROLE = ACCOUNTADMIN
-    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
+    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
 
 -- Set defaults for CRO user
 ALTER USER {{ env.EVENT_CRO_NAME }} SET
     DEFAULT_ROLE = ACCOUNTADMIN
-    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
+    DEFAULT_WAREHOUSE = {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
 
 -- ============================================================================
 -- Set Context
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 -- ============================================================================
 -- Verification
 -- ============================================================================
 
 SELECT 'Account configuration complete!' AS status,
-       '{{ EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}' AS database_created,
-       '{{ EVENT_WAREHOUSE | default("TELCO_WH") }}' AS warehouse_created,
+       '{{ EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' AS database_created,
+       '{{ EVENT_WAREHOUSE | default("CITYFIBRE_DEMO_WH") }}' AS warehouse_created,
        '{{ EVENT_ATTENDEE_ROLE | default("TELCO_ANALYST_ROLE") }}' AS role_created,
        'Users: {{ env.EVENT_USER_NAME }}, {{ env.EVENT_ADMIN_NAME }}, {{ env.EVENT_CEO_NAME }}, {{ env.EVENT_CFO_NAME }}, {{ env.EVENT_CRO_NAME }}' AS users_created;
 
 -- Output for DataOps pipeline
 SELECT 
     '{{ EVENT_ATTENDEE_ROLE | default("TELCO_ANALYST_ROLE") }}' as role_name,
-    '{{ EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}' as database_name,
-    '{{ EVENT_WAREHOUSE | default("TELCO_WH") }}' as warehouse_name,
+    '{{ EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' as database_name,
+    '{{ EVENT_WAREHOUSE | default("CITYFIBRE_DEMO_WH") }}' as warehouse_name,
     CURRENT_TIMESTAMP() as deployed_at;
 

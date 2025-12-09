@@ -6,9 +6,9 @@
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 -- ============================================================================
 -- Step 1: Create Stored Procedure for Presigned URLs
@@ -28,7 +28,7 @@ DECLARE
     presigned_url STRING;
     sql_stmt STRING;
     expiration_seconds INTEGER;
-    stage_name STRING DEFAULT '@{{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}.{{ env.EVENT_SCHEMA | default("DEFAULT_SCHEMA") }}.DATA_STAGE';
+    stage_name STRING DEFAULT '@{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.DATA_STAGE';
 BEGIN
     expiration_seconds := EXPIRATION_MINS * 60;
 
@@ -245,10 +245,10 @@ dependencies:
             
             # Create Streamlit app
             app_name = ''AUTO_GENERATED_1''
-            warehouse = ''{{ env.EVENT_WAREHOUSE | default("TELCO_WH") }}''
+            warehouse = ''{{ env.EVENT_WAREHOUSE | default("CITYFIBRE_DEMO_WH") }}''
             
             create_streamlit_sql = f"""
-            CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}.{{ env.EVENT_SCHEMA | default("DEFAULT_SCHEMA") }}.{app_name}
+            CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.{app_name}
                 FROM @DATA_STAGE
                 MAIN_FILE = ''test.py''
                 QUERY_WAREHOUSE = {warehouse}
@@ -263,7 +263,7 @@ dependencies:
                 org_name = account_info[0][''ORG'']
                 
                 # Construct app URL
-                app_url = f"https://app.snowflake.com/{org_name}/{account_name}/#/streamlit-apps/{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.{app_name}"
+                app_url = f"https://app.snowflake.com/{org_name}/{account_name}/#/streamlit-apps/{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.{app_name}"
                 
                 # Return only the URL if successful
                 return app_url
@@ -276,7 +276,7 @@ dependencies:
 Warning: Could not auto-create Streamlit app: {str(create_error)}
 
 To create manually, run:
-CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}.{{ env.EVENT_SCHEMA | default("DEFAULT_SCHEMA") }}.{app_name}
+CREATE OR REPLACE STREAMLIT {{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}.{{ env.EVENT_SCHEMA | default("CITYFIBRE_SCHEMA") }}.{app_name}
     FROM @DATA_STAGE
     MAIN_FILE = ''test.py''
     QUERY_WAREHOUSE = {warehouse};
@@ -483,67 +483,67 @@ FROM SPECIFICATION $$
       "execution_environment": {
         "query_timeout": 0,
         "type": "warehouse",
-        "warehouse": "{{ env.EVENT_WAREHOUSE | default('TELCO_WH') }}"
+        "warehouse": "{{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}"
       },
-      "identifier": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.GET_FILE_PRESIGNED_URL_SP",
+      "identifier": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.GET_FILE_PRESIGNED_URL_SP",
       "name": "GET_FILE_PRESIGNED_URL_SP(VARCHAR, DEFAULT NUMBER)",
       "type": "procedure"
     },
     "Query Finance Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.FINANCE_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.FINANCE_SEMANTIC_VIEW"
     },
     "Query HR Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.HR_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.HR_SEMANTIC_VIEW"
     },
     "Query Marketing Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.MARKETING_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.MARKETING_SEMANTIC_VIEW"
     },
     "Query Sales Datamart": {
-      "semantic_view": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SALES_SEMANTIC_VIEW"
+      "semantic_view": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SALES_SEMANTIC_VIEW"
     },
     "Search Internal Documents: Finance": {
       "id_column": "FILE_URL",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEARCH_FINANCE_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_FINANCE_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: HR": {
       "id_column": "FILE_URL",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEARCH_HR_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_HR_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Marketing": {
       "id_column": "RELATIVE_PATH",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEARCH_MARKETING_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_MARKETING_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Sales": {
       "id_column": "FILE_URL",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEARCH_SALES_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_SALES_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Strategy": {
       "id_column": "RELATIVE_PATH",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEARCH_STRATEGY_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_STRATEGY_DOCS",
       "title_column": "TITLE"
     },
     "Search Internal Documents: Network": {
       "id_column": "RELATIVE_PATH",
       "max_results": 5,
-      "name": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEARCH_NETWORK_DOCS",
+      "name": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEARCH_NETWORK_DOCS",
       "title_column": "TITLE"
     },
     "Send_Emails": {
       "execution_environment": {
         "query_timeout": 0,
         "type": "warehouse",
-        "warehouse": "{{ env.EVENT_WAREHOUSE | default('TELCO_WH') }}"
+        "warehouse": "{{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}"
       },
-      "identifier": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.SEND_MAIL",
+      "identifier": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.SEND_MAIL",
       "name": "SEND_MAIL(VARCHAR, VARCHAR, VARCHAR)",
       "type": "procedure"
     },
@@ -551,9 +551,9 @@ FROM SPECIFICATION $$
       "execution_environment": {
         "query_timeout": 0,
         "type": "warehouse",
-        "warehouse": "{{ env.EVENT_WAREHOUSE | default('TELCO_WH') }}"
+        "warehouse": "{{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }}"
       },
-      "identifier": "{{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }}.{{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }}.WEB_SCRAPE",
+      "identifier": "{{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }}.{{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }}.WEB_SCRAPE",
       "name": "WEB_SCRAPE(VARCHAR)",
       "type": "function"
     }

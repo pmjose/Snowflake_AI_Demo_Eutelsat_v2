@@ -6,9 +6,9 @@
 -- ============================================================================
 
 USE ROLE {{ env.EVENT_ATTENDEE_ROLE | default('TELCO_ANALYST_ROLE') }};
-USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('TELCO_WH') }};
-USE DATABASE {{ env.EVENT_DATABASE | default('TELCO_OPERATIONS_AI') }};
-USE SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+USE WAREHOUSE {{ env.EVENT_WAREHOUSE | default('CITYFIBRE_DEMO_WH') }};
+USE DATABASE {{ env.EVENT_DATABASE | default('CITYFIBRE_AI_DEMO') }};
+USE SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 -- ============================================================================
 -- Step 1: Create File Format for CSV Files
@@ -134,6 +134,14 @@ CREATE OR REPLACE TABLE location_dim (
 -- ============================================================================
 -- Step 3: Create Fact Tables
 -- ============================================================================
+
+-- CityFibre KPI Reference (demo)
+CREATE OR REPLACE TABLE cityfibre_kpi (
+    metric VARCHAR(200) PRIMARY KEY,
+    value NUMBER(18,2),
+    as_of_note VARCHAR(200),
+    category VARCHAR(50)
+) COMMENT = 'Reference KPIs for CityFibre demo (RFS, take-up, financing, speed)';
 
 -- Sales Fact Table
 CREATE OR REPLACE TABLE sales_fact (
@@ -327,6 +335,12 @@ FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/location_dim.
 FILE_FORMAT = CSV_FORMAT
 ON_ERROR = 'CONTINUE';
 
+-- Load CityFibre KPI Reference
+COPY INTO cityfibre_kpi
+FROM @{{ env.EVENT_DATA_STAGE | default('DATA_STAGE') }}/demo_data/cityfibre_kpi.csv
+FILE_FORMAT = CSV_FORMAT
+ON_ERROR = 'CONTINUE';
+
 -- ============================================================================
 -- Step 6: Load Fact Data from Stage
 -- ============================================================================
@@ -433,8 +447,8 @@ UNION ALL
 SELECT '', 'sf_contacts', COUNT(*) FROM sf_contacts;
 
 -- Show all tables
-SHOW TABLES IN SCHEMA {{ env.EVENT_SCHEMA | default('DEFAULT_SCHEMA') }};
+SHOW TABLES IN SCHEMA {{ env.EVENT_SCHEMA | default('CITYFIBRE_SCHEMA') }};
 
 SELECT 'CityFibre AI Demo data foundation complete!' AS status,
-       '{{ env.EVENT_DATABASE | default("TELCO_OPERATIONS_AI") }}' AS database_name,
+       '{{ env.EVENT_DATABASE | default("CITYFIBRE_AI_DEMO") }}' AS database_name,
        CURRENT_TIMESTAMP() AS loaded_at;
